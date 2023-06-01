@@ -10545,6 +10545,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7832448792468686741, guid: b6527ed6b35efee4fbc7934926997f83, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7832448792468686741, guid: b6527ed6b35efee4fbc7934926997f83, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6527ed6b35efee4fbc7934926997f83, type: 3}
 --- !u!1 &450838316
@@ -46432,6 +46440,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2706335421540639368, guid: 573a47008243f0847b23b25a858a8b65, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706335421540639368, guid: 573a47008243f0847b23b25a858a8b65, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3402943768500605624, guid: 573a47008243f0847b23b25a858a8b65, type: 3}
       propertyPath: Audios.Idle
       value: 
@@ -55848,6 +55864,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5961683358770431266, guid: 248c9c9af6212ef42a49c4330dcf5c69, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961683358770431266, guid: 248c9c9af6212ef42a49c4330dcf5c69, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8102626504594574564, guid: 248c9c9af6212ef42a49c4330dcf5c69, type: 3}
       propertyPath: m_Mass
       value: 1000
@@ -65287,6 +65311,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8803519009465623064, guid: 812c311592808134282bc1ceb5130d23, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123553044367539048, guid: 812c311592808134282bc1ceb5130d23, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123553044367539048, guid: 812c311592808134282bc1ceb5130d23, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
