@@ -29,15 +29,16 @@ public class TimerController : MonoBehaviour
 
         timerObject = Instantiate(timerTextPrefab, UIparent.transform).GetComponent<Image>();
         timerText = timerObject.GetComponentsInChildren<TextMeshProUGUI>()[1];
-        timerText.gameObject.SetActive(false);
 
         bestObject = Instantiate(bestLapPrefab, UIparent.transform).GetComponent<Image>();
         bestLapText = bestObject.GetComponentsInChildren<TextMeshProUGUI>()[1];
-        bestLapText.gameObject.SetActive(false);
 
         currentObject = Instantiate(currentLapPrefab, UIparent.transform).GetComponent<Image>();
         currentLapText = currentObject.GetComponentsInChildren<TextMeshProUGUI>()[1];
-        currentLapText.gameObject.SetActive(false);
+
+        timerText.text = "00:00.000";
+        bestLapText.text = "00:00.000";
+        currentLapText.text = "00:00.000";
     }
 
     private void OnDestroy()
@@ -83,9 +84,6 @@ public class TimerController : MonoBehaviour
 
     public void StartTime()
     {
-        timerText.gameObject.SetActive(true);
-        bestLapText.gameObject.SetActive(true);
-        currentLapText.gameObject.SetActive(true);   
         isStarted = true;
     }
     public void Restart()
