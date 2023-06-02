@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject AudioMenuUi;
     [SerializeField] private GameObject PlayerMenuUi;
     [SerializeField] private GameObject ControlsMenuUi;
+    [SerializeField] private GameObject RaceMenuUi;
 
     [Header("Other UI elements")]
     [SerializeField] private GameObject blurUI;
@@ -27,6 +28,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button AudioBack;
     [SerializeField] private Button PlayerBack;
     [SerializeField] private Button ControlsBack;
+    [SerializeField] private Button RaceBack;
 
     [Header("Selects")]
     [SerializeField] private GameObject enter;
@@ -59,6 +61,8 @@ public class PauseMenu : MonoBehaviour
             PlayerBack.onClick.Invoke();
         else if (ControlsMenuUi.activeInHierarchy && !MenuNavigator.isEditing)
             ControlsBack.onClick.Invoke();
+        else if (RaceMenuUi.activeInHierarchy && !MenuNavigator.isEditing)
+            RaceBack.onClick.Invoke();
         else if (SettingsMenuUi.activeInHierarchy && !MenuNavigator.isEditing)
             SettingsBack.onClick.Invoke();
     }

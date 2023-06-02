@@ -17,5 +17,10 @@ public class MinimapCameraController : MonoBehaviour
         Vector3 newPosition = player.position;
         newPosition.y = transform.position.y;
         transform.position = newPosition;
+
+        if(PauseMenu.GameIsPaused)
+            transform.GetComponent<Camera>().orthographicSize = 180f;
+        else
+            transform.GetComponent<Camera>().orthographicSize = 120f;
     }
 }
