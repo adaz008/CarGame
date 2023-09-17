@@ -1,20 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using Model;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-using static System.Net.Mime.MediaTypeNames;
-using static UnityEngine.Rendering.DebugUI;
 using Button = UnityEngine.UI.Button;
 using Slider = UnityEngine.UI.Slider;
 using Toggle = UnityEngine.UI.Toggle;
+using Image = UnityEngine.UI.Image;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -53,6 +45,16 @@ public class SettingsMenu : MonoBehaviour
     private string[] CameraTypes = { "Close", "Far", "Hood", "Bumper" };
     private string[] TransmissionTypes = { "Auto", "Manual" };
     private string[] ControlsTypes = { "Keyboard", "Controller" };
+
+    [Header("StartRace")]
+    [SerializeField] private Image startRace;
+    [SerializeField] private Image endRace;
+    [SerializeField] private Button PauseMenuBack;
+    private bool isRace = false;
+
+    private GameObject timerGameObject;
+    private GameObject trackGameObject;
+    private GameObject countDownGameObject;
 
     public void Start()
     {
@@ -113,18 +115,7 @@ public class SettingsMenu : MonoBehaviour
                 toggles[i].isOn = UserSettings.Instance.Minimap;
                 MinimapOnOff.text = toggles[i].isOn ? "ON" : "OFF";
             }
-
-            //toggles[i].onValueChanged.AddListener((value) => { setToggleValue(toggles[i], value); });
         }
-
-        //changeCameraButton[0].onClick.AddListener(() => { changeCamera(-1); });
-        //changeCameraButton[1].onClick.AddListener(() => { changeCamera(1); });
-
-        //changeTransmissionButton[0].onClick.AddListener(() => { changeTransmission(); });
-        //changeTransmissionButton[1].onClick.AddListener(() => { changeTransmission(); });
-
-        
-       
     }
 
     public void ChangeToggleValue(Toggle toggle)
@@ -139,13 +130,13 @@ public class SettingsMenu : MonoBehaviour
 
     public void SaveAudioSettings()
     {
-        foreach(Slider slider in sliders)
+        foreach (Slider slider in sliders)
         {
-            if(slider.name == "CarSlider")
+            if (slider.name == "CarSlider")
                 UserSettings.Instance.CarVolume = slider.value;
-            if(slider.name == "SoundEffectSlider")
+            if (slider.name == "SoundEffectSlider")
                 UserSettings.Instance.SoundEffectVolume = slider.value;
-            if(slider.name == "MenuMusicSlider")
+            if (slider.name == "MenuMusicSlider")
                 UserSettings.Instance.MenuMusicVolume = slider.value;
             if (slider.name == "GameMusicSlider")
                 UserSettings.Instance.GameMusicVolume = slider.value;
@@ -186,18 +177,18 @@ public class SettingsMenu : MonoBehaviour
 
     private void HandleSliderValueChange(float value, Slider slider)
     {
-        slider.GetComponentInChildren<TextMeshProUGUI>().text = ((int)(value*100)).ToString();
+        slider.GetComponentInChildren<TextMeshProUGUI>().text = ((int)(value * 100)).ToString();
         SaveAudioSettings();
     }
 
     public void IncreaseVolume(Slider slider)
     {
-        if(slider.value != 1)
+        if (slider.value != 1)
             slider.value += 0.01f;
     }
     public void DecreaseVolume(Slider slider)
     {
-        if(slider.value != 0)
+        if (slider.value != 0)
             slider.value -= 0.01f;
     }
 
@@ -220,20 +211,45 @@ public class SettingsMenu : MonoBehaviour
 
     public void StartRace()
     {
-        GameObject UIparent= GameObject.FindGameObjectWithTag("UI");
-        GameObject Trackparent= GameObject.FindGameObjectWithTag("TrackParent");
+        isRace = true;
+        startRace.gameObject.SetActive(false);
+        endRace.gameObject.SetActive(true);
 
-        GameObject Car = GameObject.FindGameObjectWithTag("Car");        
+        GameObject UIparent = GameObject.FindGameObjectWithTag("UI");
+        GameObject Trackparent = GameObject.FindGameObjectWithTag("TrackParent");
 
-        GameObject timerGameobject = Instantiate(timerPrefab, Trackparent.transform);        
-        GameObject track = Instantiate(trackPrefab);
+        GameObject Car = GameObject.FindGameObjectWithTag("Car");
 
-        GameObject gridline = track.GetComponentInChildren<Transform>().Find("prop_gridline").gameObject;
+        timerGameObject = Instantiate(timerPrefab, Trackparent.transform);
+        trackGameObject = Instantiate(trackPrefab);
 
-        GameObject countDown = Instantiate(countDownPrefab, Trackparent.transform);
+        GameObject gridline = trackGameObject.GetComponentInChildren<Transform>().Find("prop_gridline").gameObject;
+
+        countDownGameObject = Instantiate(countDownPrefab, Trackparent.transform);
 
         Car.GetComponent<CarMovement>().StartRacePos(gridline.transform.position);
 
-        countDown.GetComponent<CountDownController>().StartRace();  
+        countDownGameObject.GetComponent<CountDownController>().StartRace();
+    }
+
+    public void EndRace()
+    {
+        isRace = false;
+        startRace.gameObject.SetActive(true);
+        endRace.gameObject.SetActive(false);
+
+        Destroy(timerGameObject);
+        Destroy(trackGameObject);
+        Destroy(countDownGameObject);
+
+        PauseMenuBack.onClick.Invoke();
+    }
+
+    public void RaceChangerSelected(GameObject raceSelectorUI)
+    {
+        if(isRace)
+            EndRace();
+        else
+            raceSelectorUI.SetActive(true);    
     }
 }
