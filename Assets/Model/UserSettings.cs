@@ -75,20 +75,5 @@ namespace Model
         public KeyCode ChangeCamera_Keyboard { get => keyCodesKeyboard[10]; set => keyCodesKeyboard[10] = value; }
 
         public KeyCode[] KeyCodesKeyboard { get => keyCodesKeyboard; }
-
-
-        //Control-Controller
-        public KeyCode Accelerate_Controller { get; set; }
-        public KeyCode Brake_Reverse_Controller { get; set; }
-        public KeyCode SteerRight_Controller { get; set; }
-        public KeyCode SteerLeft_Controller { get; set; }
-        public KeyCode Nitro_Controller { get; set; }
-        public KeyCode Handbrake_Controller{ get; set; }
-        public KeyCode ShiftUp_Controller { get; set; }
-        public KeyCode ShiftDown_Controller { get; set; }
-        public KeyCode Reset_Controller { get; set; }
-        public KeyCode LookBack_Controller { get; set; }
-        public KeyCode ChangeCamera_Controller { get; set; }
-
     }
 }

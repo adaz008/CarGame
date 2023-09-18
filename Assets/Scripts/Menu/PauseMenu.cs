@@ -34,8 +34,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject enter;
     [SerializeField] private GameObject esc;
 
-    [Header("SettingsMenuNavigator")]
-    [SerializeField] private GameObject SettingsMenuNavigator;
+    [SerializeField] private ControlsMenuNavigator MenuNavigator;
 
 
     // Update is called once per frame
@@ -55,15 +54,15 @@ public class PauseMenu : MonoBehaviour
 
     private void MoveBack()
     {
-        if (AudioMenuUi.activeInHierarchy && !MenuNavigator.isEditing)
+        if (AudioMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
             AudioBack.onClick.Invoke();
-        else if (PlayerMenuUi.activeInHierarchy && !MenuNavigator.isEditing)
+        else if (PlayerMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
             PlayerBack.onClick.Invoke();
-        else if (ControlsMenuUi.activeInHierarchy && !MenuNavigator.isEditing)
+        else if (ControlsMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
             ControlsBack.onClick.Invoke();
-        else if (RaceMenuUi.activeInHierarchy && !MenuNavigator.isEditing)
+        else if (RaceMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
             RaceBack.onClick.Invoke();
-        else if (SettingsMenuUi.activeInHierarchy && !MenuNavigator.isEditing)
+        else if (SettingsMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
             SettingsBack.onClick.Invoke();
     }
 

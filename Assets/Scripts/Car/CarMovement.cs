@@ -119,8 +119,6 @@ public class CarMovement : MonoBehaviour
 
         radius = 5 + KPH / 20;
 
-        Debug.Log(RPM);
-
         if (!isRaceStarting)
             GetInput();
         //AddDownForce();

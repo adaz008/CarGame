@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 8487453}
   - component: {fileID: 8487452}
   - component: {fileID: 8487451}
+  - component: {fileID: 8487458}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -211,6 +212,9 @@ MonoBehaviour:
   timerPrefab: {fileID: 2439717413543376841, guid: ae27f855f3bb1d547b6e38c338f978ad, type: 3}
   countDownPrefab: {fileID: 8060932876409051407, guid: 8a242617339bf294bba79d99f559c330, type: 3}
   trackPrefab: {fileID: 5744475345942301026, guid: 1316dcbbf39921e449eb99a90549b144, type: 3}
+  startRace: {fileID: 0}
+  endRace: {fileID: 0}
+  PauseMenuBack: {fileID: 0}
 --- !u!114 &8487453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +243,7 @@ MonoBehaviour:
   RaceBack: {fileID: 1861843200}
   enter: {fileID: 1115551777}
   esc: {fileID: 1288454705}
-  SettingsMenuNavigator: {fileID: 1937294794}
+  MenuNavigator: {fileID: 651889475}
 --- !u!114 &8487454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +335,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &8487458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8aac578a2ad9624cbc5e2837698672b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsMenuCanvas: {fileID: 1937294794}
+  audioSettingsCanvas: {fileID: 1100824782}
+  playerSettingsCanvas: {fileID: 436913961}
+  controlsSettingsCanvas: {fileID: 651889473}
 --- !u!1 &13790724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1104,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 436913963}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -7371,7 +7391,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -7570,7 +7590,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -8068,7 +8088,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -9451,7 +9471,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -10446,7 +10466,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1100824784}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -10850,7 +10870,6 @@ GameObject:
   - component: {fileID: 429893578}
   - component: {fileID: 429893577}
   - component: {fileID: 429893576}
-  - component: {fileID: 429893575}
   m_Layer: 5
   m_Name: RaceMenu
   m_TagString: Untagged
@@ -10858,43 +10877,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &429893575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429893574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40aa6f2d27c767a45aa54be424c22526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 731191109}
-  - {fileID: 1542295048}
-  - {fileID: 1755356323}
-  - {fileID: 551425331}
-  - {fileID: 500501031}
-  - {fileID: 1898990655}
-  - {fileID: 892010320}
-  - {fileID: 817543688}
-  - {fileID: 1828055708}
-  - {fileID: 1959703348}
-  - {fileID: 2133868467}
-  - {fileID: 1981393357}
-  - {fileID: 1643496204}
-  - {fileID: 167650180}
-  - {fileID: 915175971}
-  - {fileID: 1602027091}
-  ControlsMenuUi: {fileID: 0}
-  PlayerMenuUi: {fileID: 0}
-  settingsMenu: {fileID: 0}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverColor: {r: 0, g: 0.3882353, b: 0.9490196, a: 1}
-  activeInputFieldColor: {r: 0, g: 0, b: 0, a: 0}
-  normalBGColor: {r: 0, g: 0, b: 0, a: 0}
-  hoverBGColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &429893576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11316,7 +11298,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 436913961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40aa6f2d27c767a45aa54be424c22526, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ae8bc16eaecba744bfb94c658e64da7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -11325,14 +11307,12 @@ MonoBehaviour:
   - {fileID: 609439119}
   - {fileID: 55389931}
   - {fileID: 692399868}
-  ControlsMenuUi: {fileID: 0}
-  PlayerMenuUi: {fileID: 436913961}
-  settingsMenu: {fileID: 8487452}
   normalColor: {r: 0.16862746, g: 0.105882354, b: 0.17254902, a: 1}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   activeInputFieldColor: {r: 0, g: 0, b: 0, a: 0}
   normalBGColor: {r: 1, g: 1, b: 1, a: 1}
   hoverBGColor: {r: 0.81960785, g: 0, b: 0.5254902, a: 1}
+  settingsMenu: {fileID: 8487452}
 --- !u!1 &440116709
 GameObject:
   m_ObjectHideFlags: 0
@@ -11931,7 +11911,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1100824784}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -12209,7 +12189,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -13160,7 +13140,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -14246,7 +14226,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 589121743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40aa6f2d27c767a45aa54be424c22526, type: 3}
+  m_Script: {fileID: 11500000, guid: 814df425b68bd764da1a969bf84d8be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -14254,9 +14234,6 @@ MonoBehaviour:
   - {fileID: 748961354}
   - {fileID: 1141978475}
   - {fileID: 625079161}
-  ControlsMenuUi: {fileID: 0}
-  PlayerMenuUi: {fileID: 0}
-  settingsMenu: {fileID: 0}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 0, g: 0.3882353, b: 0.9490196, a: 1}
   activeInputFieldColor: {r: 0, g: 0, b: 0, a: 0}
@@ -14482,7 +14459,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 436913963}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -14827,7 +14804,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 589121748}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -15195,7 +15172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 651889473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40aa6f2d27c767a45aa54be424c22526, type: 3}
+  m_Script: {fileID: 11500000, guid: 7db91d195c483984481ad4992a0d2907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -15210,12 +15187,9 @@ MonoBehaviour:
   - {fileID: 320322615}
   - {fileID: 1698591227}
   - {fileID: 1696867166}
-  ControlsMenuUi: {fileID: 651889473}
-  PlayerMenuUi: {fileID: 0}
-  settingsMenu: {fileID: 0}
   normalColor: {r: 0.16862746, g: 0.105882354, b: 0.17254902, a: 1}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
-  activeInputFieldColor: {r: 0, g: 0.49803922, b: 1, a: 1}
+  activeInputFieldColor: {r: 0, g: 0.3882353, b: 0.9490196, a: 1}
   normalBGColor: {r: 1, g: 1, b: 1, a: 1}
   hoverBGColor: {r: 0.81960785, g: 0, b: 0.5254902, a: 1}
 --- !u!1 &660444033
@@ -16014,7 +15988,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 436913963}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -16734,7 +16708,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -17467,7 +17441,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 589121748}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -18175,7 +18149,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -18742,30 +18716,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1937294795}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
-          m_MethodName: Select
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 821888715}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 15
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1937294795}
-          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-          m_MethodName: set_enabled
-          m_Mode: 6
+        - m_Target: {fileID: 8487458}
+          m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+          m_MethodName: OpenPlayerSettings
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18802,7 +18760,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1937294795}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6
@@ -19629,7 +19587,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -19945,7 +19903,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -21908,7 +21866,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -22472,7 +22430,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100824782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40aa6f2d27c767a45aa54be424c22526, type: 3}
+  m_Script: {fileID: 11500000, guid: 67e45a8762ba25748a8f5e157b43c823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -22480,14 +22438,12 @@ MonoBehaviour:
   - {fileID: 468772060}
   - {fileID: 1582664206}
   - {fileID: 391434916}
-  ControlsMenuUi: {fileID: 0}
-  PlayerMenuUi: {fileID: 0}
-  settingsMenu: {fileID: 8487452}
   normalColor: {r: 0.16862746, g: 0.105882354, b: 0.17254902, a: 1}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   activeInputFieldColor: {r: 0, g: 0, b: 0, a: 0}
   normalBGColor: {r: 1, g: 1, b: 1, a: 1}
   hoverBGColor: {r: 0.81960785, g: 0, b: 0.5254902, a: 1}
+  settingsMenu: {fileID: 8487452}
 --- !u!1 &1112964704
 GameObject:
   m_ObjectHideFlags: 0
@@ -22582,10 +22538,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1937294795}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 8487452}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: CloseSound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -22594,9 +22550,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8487452}
-        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: CloseSound
+      - m_Target: {fileID: 8487458}
+        m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+        m_MethodName: OpenSettingsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22957,22 +22913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 589121748}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
-          m_MethodName: Select
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1141978475}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 15
     callback:
       m_PersistentCalls:
@@ -23020,6 +22960,18 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 681238519}
             m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 8487458}
+          m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+          m_MethodName: OpenSettingsMenu
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -23767,7 +23719,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -29321,22 +29273,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1937294795}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
-          m_MethodName: Select
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1293979628}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 15
     callback:
       m_PersistentCalls:
@@ -29353,9 +29289,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1937294795}
-          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-          m_MethodName: set_enabled
+        - m_Target: {fileID: 1477472546}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -29363,12 +29299,12 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 0
+            m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1477472546}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 8487458}
+          m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+          m_MethodName: OpenAudioSettings
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -29393,7 +29329,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 1937294795}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6
@@ -29708,10 +29644,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1937294795}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 8487458}
+        m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+        m_MethodName: OpenSettingsMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -29723,6 +29659,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8487452}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
         m_MethodName: CloseSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 651889475}
+        m_TargetAssemblyTypeName: ControlsMenuNavigator, Assembly-CSharp
+        m_MethodName: OnDeactivate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29825,10 +29773,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1937294795}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 8487458}
+        m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+        m_MethodName: OpenSettingsMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -30062,7 +30010,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 436913963}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -30302,7 +30250,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1100824784}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -31043,30 +30991,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1937294795}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
-          m_MethodName: Select
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1400531317}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 15
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1937294795}
-          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-          m_MethodName: set_enabled
-          m_Mode: 6
+        - m_Target: {fileID: 8487458}
+          m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
+          m_MethodName: OpenControlsSettings
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -31103,7 +31035,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1937294795}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6
@@ -32537,7 +32469,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -33516,7 +33448,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1100824784}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -34016,7 +33948,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -34639,7 +34571,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -34845,22 +34777,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 651889475}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
-          m_MethodName: Select
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1651838772}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -35651,7 +35567,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -35802,7 +35718,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -36784,7 +36700,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -37585,7 +37501,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -38215,7 +38131,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 436913963}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -38654,7 +38570,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 589121748}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -38979,7 +38895,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -39558,10 +39474,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1937294798}
-  - component: {fileID: 1937294795}
   - component: {fileID: 1937294800}
   - component: {fileID: 1937294799}
   - component: {fileID: 1937294801}
+  - component: {fileID: 1937294802}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -39569,30 +39485,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1937294795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937294794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40aa6f2d27c767a45aa54be424c22526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 1293979628}
-  - {fileID: 821888715}
-  - {fileID: 1400531317}
-  ControlsMenuUi: {fileID: 0}
-  PlayerMenuUi: {fileID: 0}
-  settingsMenu: {fileID: 0}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverColor: {r: 0.16862746, g: 0.105882354, b: 0.17254902, a: 1}
-  activeInputFieldColor: {r: 0, g: 0, b: 0, a: 0}
-  normalBGColor: {r: 0.64705884, g: 0.7137255, b: 0.7921569, a: 1}
-  hoverBGColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!224 &1937294798
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39679,6 +39571,27 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1937294802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937294794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 814df425b68bd764da1a969bf84d8be3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 1293979628}
+  - {fileID: 821888715}
+  - {fileID: 1400531317}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0.16862746, g: 0.105882354, b: 0.17254902, a: 1}
+  activeInputFieldColor: {r: 0, g: 0, b: 0, a: 0}
+  normalBGColor: {r: 0.64705884, g: 0.7137255, b: 0.7921569, a: 1}
+  hoverBGColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1940654572
 GameObject:
   m_ObjectHideFlags: 0
@@ -39986,7 +39899,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -40310,7 +40223,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -40457,22 +40370,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 651889475}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
-          m_MethodName: Select
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1973409864}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -40661,7 +40558,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -42325,7 +42222,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 651889475}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -42578,7 +42475,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 589121748}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
@@ -42727,7 +42624,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 429893575}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
