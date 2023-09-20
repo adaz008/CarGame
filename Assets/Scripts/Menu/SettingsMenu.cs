@@ -40,7 +40,7 @@ public class SettingsMenu : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] private GameObject timerPrefab;
     [SerializeField] private GameObject countDownPrefab;
-    [SerializeField] private GameObject trackPrefab;
+    //[SerializeField] private GameObject trackPrefab;
 
     private string[] CameraTypes = { "Close", "Far", "Hood", "Bumper" };
     private string[] TransmissionTypes = { "Auto", "Manual" };
@@ -209,7 +209,7 @@ public class SettingsMenu : MonoBehaviour
         UIClose.Play();
     }
 
-    public void StartRace()
+    public void StartRace(GameObject trackPrefab)
     {
         isRace = true;
         startRace.gameObject.SetActive(false);

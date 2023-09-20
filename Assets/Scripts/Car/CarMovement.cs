@@ -79,7 +79,7 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private float brakeColorIntensity;
 
     private bool handBrake = false;
-    public static bool lookBack= false;
+    public static bool lookBack = false;
     private bool isRaceStarting = false;
 
     private bool isChanged = false;
@@ -102,13 +102,13 @@ public class CarMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rpmNeedle.rotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(minRPMNeedleRotation, maxRPMNeedleRotation, RPM/ redLineEnd));
+        rpmNeedle.rotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(minRPMNeedleRotation, maxRPMNeedleRotation, RPM / redLineEnd));
 
         int KPH = (int)(playerRB.velocity.magnitude * 3.6f);
 
         speedText.text = KPH.ToString();
 
-        if(gearState == GearState.Neutral)
+        if (gearState == GearState.Neutral)
             gearText.text = "N";
         else if (gearState == GearState.Reverse)
             gearText.text = "R";
@@ -131,11 +131,12 @@ public class CarMovement : MonoBehaviour
 
     private void CheckReadline()
     {
-        if(RPM > redLineStart)
+        if (RPM > redLineStart)
         {
             needleCircle.color = Color.red;
             gearText.color = Color.red;
-        }else
+        }
+        else
         {
             needleCircle.color = Color.white;
             gearText.color = Color.white;
@@ -173,7 +174,7 @@ public class CarMovement : MonoBehaviour
             {
                 isChanged = !isChanged;
                 StartCoroutine(ChangeGear(-1));
-            }                
+            }
         }
 
         gasInput = 0;
@@ -312,7 +313,7 @@ public class CarMovement : MonoBehaviour
                 //336f konstans
                 //tireDiameter = kerek magassag
                 RPM = (playerRB.velocity.magnitude * 2.25f * gearRatios[currentGear] * 336f * differentialRatio) / tireDiameter;
-                RPM = RPM > redLineEnd  ? (redLineEnd + Random.Range(-100, 100)) : RPM;
+                RPM = RPM > redLineEnd ? (redLineEnd + Random.Range(-100, 100)) : RPM;
                 //Nyomaték newtonméterben
                 torque = (hpToRPMCurve.Evaluate(RPM / redLineEnd) * motorPower / RPM) * gearRatios[currentGear] * differentialRatio * 5252f * clutch;
                 if (RPM > redLineEnd)
@@ -404,7 +405,7 @@ public class CarMovement : MonoBehaviour
 
 
     private void UpdateWheels()
-    { 
+    {
         UpdateSingleWheel(colliders.FLWheel, transforms.FLWheel);
         UpdateSingleWheel(colliders.FRWheel, transforms.FRWheel);
         UpdateSingleWheel(colliders.RLWheel, transforms.RLWheel);
@@ -426,8 +427,15 @@ public class CarMovement : MonoBehaviour
         if (isEngineRunning != 0)
         {
             playerRB.velocity = Vector3.zero;
-            playerRB.transform.position = new Vector3(-1035, 0.5f, -29);
+            //playerRB.transform.position = new Vector3(-1035, 0.5f, -29);
             //playerRB.transform.position = position;
+            Collider carCollider = playerRB.GetComponentInChildren<Collider>();
+            if (carCollider)
+            {
+                Vector3 adjustedPosition = position - carCollider.bounds.extents.x * playerRB.transform.forward;
+                playerRB.MovePosition(adjustedPosition);
+            }
+
             playerRB.transform.rotation = Quaternion.Euler(0, 270, 0);
 
             gearState = GearState.Running;
@@ -463,12 +471,13 @@ public class CarMovement : MonoBehaviour
 
     public void SetRaceStarting(bool value)
     {
-        isRaceStarting=value;
+        isRaceStarting = value;
     }
 
     IEnumerator ChangeGear(int gearChange)
     {
-        if (UserSettings.Instance.Transmission == "Auto") {
+        if (UserSettings.Instance.Transmission == "Auto")
+        {
             //Ellenõrizzük, hogy történik-e váltás
             gearState = GearState.CheckingChange;
             if (currentGear + gearChange >= 0)
@@ -487,7 +496,8 @@ public class CarMovement : MonoBehaviour
                         gearState = GearState.Running;
                         yield break;
                     }
-                } else
+                }
+                else
                 {
                     //Csökkenteni szeretnénk a fokozatot
                     //Várunk egy picit hogy tényleg kell-e váltani

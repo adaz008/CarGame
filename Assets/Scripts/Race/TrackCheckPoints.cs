@@ -14,13 +14,10 @@ public class TrackCheckPoints : MonoBehaviour
     [SerializeField] GameObject lapTextPrefab;
     private TextMeshProUGUI lapText;
 
-    private List<CheckPointSingleTrigger> checkpointSingleList;
+    private List<CheckpointTrigger> checkpointSingleList;
     private int nextCheckpointSingleIndex;
-    private List<CheckpointMissSingleTrigger> checkpointmissSingleList;
-    private List<MissedCheckpointResetTrigger> checkpointmissResetList;
-
-    [SerializeField] private GameObject[] enable;
-    [SerializeField] private GameObject[] disable;
+    private List<CheckpointMissDetector> checkpointmissSingleList;
+    private List<PreCheckpointZoneTrigger> checkpointmissResetList;
 
     private TimerController timerController;
     private CountDownController countDownController;
@@ -36,28 +33,28 @@ public class TrackCheckPoints : MonoBehaviour
         lapText.gameObject.SetActive(false);
 
         // CheckPointSingle komponensek referencia lekérése és hozzáadása a listához.
-        checkpointSingleList = new List<CheckPointSingleTrigger>();
+        checkpointSingleList = new List<CheckpointTrigger>();
         foreach (Transform checkpoint in transform.Find("CheckPoints"))
         {
-            CheckPointSingleTrigger checkpointSingle = checkpoint.GetComponent<CheckPointSingleTrigger>();
+            CheckpointTrigger checkpointSingle = checkpoint.GetComponent<CheckpointTrigger>();
             checkpointSingle.SetTrackCheckpoints(this);
             checkpointSingleList.Add(checkpointSingle);
         }
 
         // CheckpointMissSingle komponensek referencia lekérése és hozzáadása a listához.
-        checkpointmissSingleList = new List<CheckpointMissSingleTrigger>();
+        checkpointmissSingleList = new List<CheckpointMissDetector>();
         foreach (Transform checkpointMiss in transform.Find("CheckpointsMiss"))
         {
-            CheckpointMissSingleTrigger checkpointmissSingle = checkpointMiss.GetComponent<CheckpointMissSingleTrigger>();
+            CheckpointMissDetector checkpointmissSingle = checkpointMiss.GetComponent<CheckpointMissDetector>();
             checkpointmissSingle.SetTrackCheckpoints(this);
             checkpointmissSingleList.Add(checkpointmissSingle);
         }
 
         // MissedCheckpointResetTrigger komponensek referencia lekérése és hozzáadása a listához.
-        checkpointmissResetList = new List<MissedCheckpointResetTrigger>();
+        checkpointmissResetList = new List<PreCheckpointZoneTrigger>();
         foreach (Transform checkpointMissReset in transform.Find("CheckpointsMissReset"))
         {
-            MissedCheckpointResetTrigger checkpointmissSingle = checkpointMissReset.GetComponent<MissedCheckpointResetTrigger>();
+            PreCheckpointZoneTrigger checkpointmissSingle = checkpointMissReset.GetComponent<PreCheckpointZoneTrigger>();
             checkpointmissSingle.SetTrackCheckpoints(this);
             checkpointmissResetList.Add(checkpointmissSingle);
         }
@@ -76,17 +73,17 @@ public class TrackCheckPoints : MonoBehaviour
     private void Start()
     {
         // Az összes CheckPointSingle és CheckpointMissSingle inaktívvá tétele.
-        foreach (CheckPointSingleTrigger single in checkpointSingleList)
+        foreach (CheckpointTrigger single in checkpointSingleList)
           single.Disable();
-        foreach (CheckpointMissSingleTrigger single in checkpointmissSingleList)
+        foreach (CheckpointMissDetector single in checkpointmissSingleList)
             single.Disable();
-        foreach (MissedCheckpointResetTrigger single in checkpointmissResetList)
+        foreach (PreCheckpointZoneTrigger single in checkpointmissResetList)
             single.Disable();
 
         lapText.gameObject.SetActive(true);
     }
 
-    public void PlayerThroughCheckpoint(CheckPointSingleTrigger checkPointSingle)
+    public void PlayerThroughCheckpoint(CheckpointTrigger checkPointSingle)
     {
         // Ellenõrizzük, hogy a játékos az aktuális ellenõrzõpontot érte-e el.
         if (checkpointSingleList.IndexOf(checkPointSingle) == nextCheckpointSingleIndex)
@@ -113,19 +110,6 @@ public class TrackCheckPoints : MonoBehaviour
                         currentLap++;
                         lapText.text = currentLap.ToString() + "/" + lapCount.ToString();
                         timerController.Restart();
-
-                        if(currentLap == lapCount)
-                        {
-                            foreach (GameObject obj in enable)
-                            {
-                                    obj?.SetActive(true);
-                            }
-
-                            foreach (GameObject obj in disable)
-                            {
-                                    obj?.SetActive(false);
-                            }
-                        }
 
                         break;
                     default:
@@ -159,19 +143,19 @@ public class TrackCheckPoints : MonoBehaviour
         }
     }
 
-    public void EnableFirstCheckpoint(CheckPointSingleTrigger checkPointSingle)
+    public void EnableFirstCheckpoint(CheckpointTrigger checkPointSingle)
     {
         if (checkpointSingleList.IndexOf(checkPointSingle) == 0)
             checkPointSingle.Enable();
     }
 
-    public void EnableFirstCheckpointMiss(CheckpointMissSingleTrigger checkpointMiss)
+    public void EnableFirstCheckpointMiss(CheckpointMissDetector checkpointMiss)
     {
         if (checkpointmissSingleList.IndexOf(checkpointMiss) == 0)
             checkpointMiss.Enable();
     }
 
-    public void EnableFirstCheckpointMissReset(MissedCheckpointResetTrigger resetTrigger)
+    public void EnableFirstCheckpointMissReset(PreCheckpointZoneTrigger resetTrigger)
     {
         if (checkpointmissResetList.IndexOf(resetTrigger) == 0)
             resetTrigger.Enable();

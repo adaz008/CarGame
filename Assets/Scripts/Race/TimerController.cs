@@ -46,9 +46,6 @@ public class TimerController : MonoBehaviour
         Destroy(timerObject.gameObject);
         Destroy(bestObject.gameObject);
         Destroy(currentObject.gameObject);
-        //Destroy(timerText.gameObject);
-        //Destroy(bestLapText.gameObject);
-        //Destroy(currentLapText.gameObject);
     }
 
     public void Destroy()

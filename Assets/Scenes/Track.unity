@@ -211,7 +211,6 @@ MonoBehaviour:
   - {fileID: 1909571098}
   timerPrefab: {fileID: 2439717413543376841, guid: ae27f855f3bb1d547b6e38c338f978ad, type: 3}
   countDownPrefab: {fileID: 8060932876409051407, guid: 8a242617339bf294bba79d99f559c330, type: 3}
-  trackPrefab: {fileID: 5744475345942301026, guid: 1316dcbbf39921e449eb99a90549b144, type: 3}
   startRace: {fileID: 1601058168}
   endRace: {fileID: 1398437388}
   PauseMenuBack: {fileID: 1655876785}
@@ -10985,11 +10984,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 429893574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814df425b68bd764da1a969bf84d8be3, type: 3}
+  m_Script: {fileID: 11500000, guid: 56c78d6e35da51646a14347e14988f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
   - {fileID: 731191109}
+  - {fileID: 1542295048}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 0, g: 0.3882353, b: 0.9490196, a: 1}
   activeInputFieldColor: {r: 0, g: 0, b: 0, a: 0}
@@ -11318,7 +11318,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 436913961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae8bc16eaecba744bfb94c658e64da7, type: 3}
+  m_Script: {fileID: 11500000, guid: 15e8f77fd7ba0fd489519da452cfcbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -14247,7 +14247,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 589121743}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814df425b68bd764da1a969bf84d8be3, type: 3}
+  m_Script: {fileID: 11500000, guid: 56c78d6e35da51646a14347e14988f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -15193,7 +15193,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 651889473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7db91d195c483984481ad4992a0d2907, type: 3}
+  m_Script: {fileID: 11500000, guid: 22ca453f3654d0a48b5c4e41ac3982ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -16804,10 +16804,10 @@ MonoBehaviour:
         - m_Target: {fileID: 8487452}
           m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
           m_MethodName: StartRace
-          m_Mode: 1
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 5744475345942301026, guid: 1316dcbbf39921e449eb99a90549b144, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -16874,7 +16874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 361f7e668f113a14680e8133659a0463, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 04ecdbcacb4158b4493b637647c363e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22631,7 +22631,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1100824782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e45a8762ba25748a8f5e157b43c823, type: 3}
+  m_Script: {fileID: 11500000, guid: 73d3705708c20834f9cf70c2b3aa32e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -32795,8 +32795,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
+        - m_Target: {fileID: 429893580}
+          m_TargetAssemblyTypeName: MenuNavigatorBase, Assembly-CSharp
           m_MethodName: Select
           m_Mode: 2
           m_Arguments:
@@ -32834,6 +32834,46 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 935609427}
             m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 15
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8487452}
+          m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+          m_MethodName: StartRace
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7622717064546981102, guid: c5bf13d2bf77b01428ec0a58fd0815a0, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8487453}
+          m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+          m_MethodName: Resume
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 429893574}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -32900,7 +32940,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 331f4e58fa0fe4a4aba3c7936d00bd98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dc6acb06f7a90874b9f284dc901193a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -35409,10 +35449,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 589121743}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 8487453}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Resume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -40024,7 +40064,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1937294794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 814df425b68bd764da1a969bf84d8be3, type: 3}
+  m_Script: {fileID: 11500000, guid: 56c78d6e35da51646a14347e14988f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
@@ -52014,7 +52054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2626302267693451269, guid: 573a47008243f0847b23b25a858a8b65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1029.13
+      value: -1026.27
       objectReference: {fileID: 0}
     - target: {fileID: 2626302267693451269, guid: 573a47008243f0847b23b25a858a8b65, type: 3}
       propertyPath: m_LocalPosition.y
@@ -52022,7 +52062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2626302267693451269, guid: 573a47008243f0847b23b25a858a8b65, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.52
+      value: -292.38
       objectReference: {fileID: 0}
     - target: {fileID: 2626302267693451269, guid: 573a47008243f0847b23b25a858a8b65, type: 3}
       propertyPath: m_LocalRotation.w
