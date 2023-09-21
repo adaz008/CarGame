@@ -6,37 +6,35 @@ using Model;
 
 public static class SaveSystem
 {
-    public static void SaveUserSettings()
+    public static void SaveData<T>(T data, string fileName)
     {
         BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/" + fileName;
 
-        string path = Application.persistentDataPath + "/userSettings.json";
-        FileStream stream = new FileStream(path, FileMode.Create);
-
-        UserSettingsData data = new UserSettingsData(UserSettings.Instance);
-
-        formatter.Serialize(stream, data);
-        stream.Close();
+        using (FileStream stream = new FileStream(path, FileMode.Create))
+        {
+            formatter.Serialize(stream, data);
+        }
     }
 
-    public static UserSettingsData LoadUserSettings()
+
+    public static T LoadData<T>(string fileName)
     {
-        string path = Application.persistentDataPath + "/userSettings.json";
+        string path = Application.persistentDataPath + "/" + fileName;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            UserSettingsData data = formatter.Deserialize(stream) as UserSettingsData;
-
-            stream.Close();
-
-            return data;
+            using (FileStream stream = new FileStream(path, FileMode.Open))
+            {
+                T data = (T)formatter.Deserialize(stream);
+                return data;
+            }
         }
         else
         {
-            Debug.Log("Save file not found in" + path);
-            return null;
+            Debug.Log("Save file not found in " + path);
+            return default(T);
         }
     }
+
 }

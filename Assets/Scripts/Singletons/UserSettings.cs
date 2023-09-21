@@ -24,7 +24,8 @@ namespace Model
             else
                 Destroy(gameObject);
 
-            UserSettingsData data = SaveSystem.LoadUserSettings();
+            UserSettingsData data = SaveSystem.LoadData<UserSettingsData>("userSettings.json");
+
 
             CarVolume = data?.CarVolume ?? 0.5f;
             SoundEffectVolume = data?.SoundEffectVolume ?? 0.5f;
