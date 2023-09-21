@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Singletons;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Model
 {
     public class UserSettings : MonoBehaviour
     {
-        public static UserSettings Instance { get; private set;}
+        public static UserSettings Instance { get; private set; }
 
         private void Awake()
         {
@@ -23,34 +24,43 @@ namespace Model
             else
                 Destroy(gameObject);
 
-            Transmission = "Auto";
-            Camera = "Close";
-            ChangeCameraReverse = false;
-            CarVolume =  0.1f;
-            SoundEffectVolume =0.5f;
-            MenuMusicVolume =0.5f;
-            GameMusicVolume =0.5f;
-            Gauges = true;
-            Minimap = true;
+            UserSettingsData data = SaveSystem.LoadUserSettings();
 
-            Accelerate_Keyboard = KeyCode.UpArrow;
-            Brake_Reverse_Keyboard = KeyCode.DownArrow;
-            SteerRight_Keyboard = KeyCode.RightArrow;
-            SteerLeft_Keyboard = KeyCode.LeftArrow;
-            Nitro_Keyboard = KeyCode.RightShift;
-            Handbrake_Keyboard = KeyCode.Space;
-            ShiftUp_Keyboard = KeyCode.LeftShift;
-            ShiftDown_Keyboard = KeyCode.LeftControl;
-            Reset_Keyboard = KeyCode.R;
-            LookBack_Keyboard = KeyCode.L;
-            ChangeCamera_Keyboard = KeyCode.C;
+            CarVolume = data?.CarVolume ?? 0.5f;
+            SoundEffectVolume = data?.SoundEffectVolume ?? 0.5f;
+            MenuMusicVolume = data?.MenuMusicVolume ?? 0.5f;
+            GameMusicVolume = data?.GameMusicVolume ?? 0.5f;
+
+            Transmission = data == null ? "Auto" : data.Transmission;
+            Camera = data == null ? "Close" : data.Camera;
+            ChangeCameraReverse = data == null ? false : data.ChangeCameraReverse;
+            Gauges = data == null ? true : data.Gauges;
+            Minimap = data == null ? true : data.Minimap;
+
+            Accelerate_Keyboard = data == null ? KeyCode.UpArrow : IntToKeyCode(data.Accelerate_Keyboard);
+            Brake_Reverse_Keyboard = data == null ? KeyCode.DownArrow : IntToKeyCode(data.Brake_Reverse_Keyboard);
+            SteerRight_Keyboard = data == null ? KeyCode.RightArrow : IntToKeyCode(data.SteerRight_Keyboard);
+            SteerLeft_Keyboard = data == null ? KeyCode.LeftArrow : IntToKeyCode(data.SteerLeft_Keyboard);
+            Nitro_Keyboard = data == null ? KeyCode.RightShift : IntToKeyCode(data.Nitro_Keyboard);
+            Handbrake_Keyboard = data == null ? KeyCode.Space : IntToKeyCode(data.Handbrake_Keyboard);
+            ShiftUp_Keyboard = data == null ? KeyCode.LeftShift : IntToKeyCode(data.ShiftUp_Keyboard);
+            ShiftDown_Keyboard = data == null ? KeyCode.LeftControl : IntToKeyCode(data.ShiftDown_Keyboard);
+            Reset_Keyboard = data == null ? KeyCode.R : IntToKeyCode(data.Reset_Keyboard);
+            LookBack_Keyboard = data == null ? KeyCode.L : IntToKeyCode(data.LookBack_Keyboard);
+            ChangeCamera_Keyboard = data == null ? KeyCode.C : IntToKeyCode(data.ChangeCamera_Keyboard);
+        }
+
+        // Converts an integer to a KeyCode
+        private KeyCode IntToKeyCode(int value)
+        {
+            return (KeyCode)value;
         }
 
         //Sound
-       [SerializeField] public float SoundEffectVolume { get; set; }
-       [SerializeField] public float CarVolume { get; set; }
-       [SerializeField] public float MenuMusicVolume { get; set; }
-       [SerializeField] public float GameMusicVolume { get; set; }
+        public float SoundEffectVolume { get; set; }
+        public float CarVolume { get; set; }
+        public float MenuMusicVolume { get; set; }
+        public float GameMusicVolume { get; set; }
 
         //Player
         public string Transmission { get; set; } //auto-manual

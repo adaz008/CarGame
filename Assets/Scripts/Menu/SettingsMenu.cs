@@ -1,4 +1,3 @@
-using Model;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +6,8 @@ using Button = UnityEngine.UI.Button;
 using Slider = UnityEngine.UI.Slider;
 using Toggle = UnityEngine.UI.Toggle;
 using Image = UnityEngine.UI.Image;
+using Model;
+using Unity.VisualScripting;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -63,12 +64,8 @@ public class SettingsMenu : MonoBehaviour
             InputFields[i].text = UserSettings.Instance.KeyCodesKeyboard[i].ToString();
 
         //CarVolume-SoundEffectVolume-MenuMusicVolume-GameMusicVolume
-        for (int i = 0; i < sliders.Length; i++)
+        foreach (Slider slider in sliders)
         {
-            Slider slider = sliders[i];
-
-            slider.onValueChanged.AddListener((value) => { HandleSliderValueChange(value, slider); });
-
             if (slider.name.Contains("Car"))
                 slider.value = UserSettings.Instance.CarVolume;
             if (slider.name.Contains("Sound"))
@@ -78,6 +75,12 @@ public class SettingsMenu : MonoBehaviour
             if (slider.name.Contains("Game"))
                 slider.value = UserSettings.Instance.GameMusicVolume;
         }
+        foreach (Slider slider in sliders)
+        {
+            slider.onValueChanged.AddListener((value) => { HandleSliderValueChange(value, slider); });
+            slider.onValueChanged.Invoke(slider.value);
+        }
+
 
         //PlayerSettins
         //Transmission
@@ -247,9 +250,9 @@ public class SettingsMenu : MonoBehaviour
 
     public void RaceChangerSelected(GameObject raceSelectorUI)
     {
-        if(isRace)
+        if (isRace)
             EndRace();
         else
-            raceSelectorUI.SetActive(true);    
+            raceSelectorUI.SetActive(true);
     }
 }

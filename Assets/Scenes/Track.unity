@@ -137,8 +137,8 @@ GameObject:
   - component: {fileID: 8487454}
   - component: {fileID: 8487453}
   - component: {fileID: 8487452}
-  - component: {fileID: 8487451}
   - component: {fileID: 8487458}
+  - component: {fileID: 8487459}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -146,22 +146,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8487451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8487450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a156a2bbc1028824e8aee555f79c0087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  hoverTextColor: {r: 0, g: 0.3882353, b: 0.9490196, a: 1}
-  normalImageColor: {r: 0.16862746, g: 0.105882354, b: 0.17254902, a: 1}
-  hoverImageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &8487452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +334,18 @@ MonoBehaviour:
   audioSettingsCanvas: {fileID: 1100824782}
   playerSettingsCanvas: {fileID: 436913961}
   controlsSettingsCanvas: {fileID: 651889473}
+--- !u!114 &8487459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8487450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd15e30d820bab3418864293e477e808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &13790724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,7 +1127,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -1143,7 +1139,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -1171,7 +1167,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -1183,7 +1179,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -7605,7 +7601,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -7621,7 +7617,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -12225,7 +12221,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -12241,7 +12237,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -13176,7 +13172,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -13192,7 +13188,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -14508,7 +14504,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -14520,7 +14516,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -14548,7 +14544,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -14560,7 +14556,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -14841,7 +14837,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -14857,13 +14853,29 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 773247686}
             m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 15
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8487459}
+          m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+          m_MethodName: SaveUserSettings
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -16037,7 +16049,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -16049,7 +16061,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -16077,7 +16089,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -16089,7 +16101,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -16745,7 +16757,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -16761,7 +16773,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -17479,7 +17491,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -17495,7 +17507,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -18350,7 +18362,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -18366,7 +18378,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -19804,7 +19816,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -19820,7 +19832,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -20120,7 +20132,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -20136,7 +20148,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -23154,7 +23166,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -23182,7 +23194,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -23198,7 +23210,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -23250,7 +23262,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -30271,7 +30283,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -30283,7 +30295,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -30311,7 +30323,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -30323,7 +30335,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -32811,7 +32823,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -32827,7 +32839,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -33303,79 +33315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
-          m_MethodName: Select
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1568945548}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8487451}
-          m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
-          m_MethodName: OnPointerEnterText
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8487451}
-          m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
-          m_MethodName: OnPointerEnterText
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 524372691}
-            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8487451}
-          m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
-          m_MethodName: OnPointerExitText
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8487451}
-          m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
-          m_MethodName: OnPointerExitText
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 524372691}
-            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Delegates: []
 --- !u!114 &1568945551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34330,7 +34270,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -34346,7 +34286,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -34953,7 +34893,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -34969,7 +34909,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -37200,7 +37140,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -37216,7 +37156,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -38001,7 +37941,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -38017,7 +37957,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -38643,7 +38583,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -38655,7 +38595,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -38683,7 +38623,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -38695,7 +38635,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -39395,7 +39335,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -39411,7 +39351,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -40399,7 +40339,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -40415,7 +40355,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -41074,7 +41014,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -41090,7 +41030,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -42991,7 +42931,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -43007,7 +42947,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -43140,7 +43080,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterText
           m_Mode: 2
@@ -43156,7 +43096,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8487451}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitText
           m_Mode: 2
@@ -43322,79 +43262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: MenuNavigator, Assembly-CSharp
-          m_MethodName: Select
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 2133912683}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 9
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8487451}
-          m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
-          m_MethodName: OnPointerEnterText
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8487451}
-          m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
-          m_MethodName: OnPointerEnterText
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1731526168}
-            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8487451}
-          m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
-          m_MethodName: OnPointerExitText
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 8487451}
-          m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
-          m_MethodName: OnPointerExitText
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 1731526168}
-            m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  m_Delegates: []
 --- !u!114 &2133912686
 MonoBehaviour:
   m_ObjectHideFlags: 0
