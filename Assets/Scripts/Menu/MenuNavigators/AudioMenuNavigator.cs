@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Menu.MenuSettings;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AudioMenuNavigator : MenuNavigatorBase
 {
-    [SerializeField] private SettingsMenu settingsMenu;
+    [SerializeField] private AudioMenu audioMenu;
 
     protected override void Update()
     {
@@ -17,9 +18,9 @@ public class AudioMenuNavigator : MenuNavigatorBase
         if (items[selectedItemIdx].GetComponentInChildren<Slider>())
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
-                settingsMenu.IncreaseVolume(items[selectedItemIdx].GetComponentInChildren<Slider>());
+                audioMenu.IncreaseVolume(items[selectedItemIdx].GetComponentInChildren<Slider>());
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
-                settingsMenu.DecreaseVolume(items[selectedItemIdx].GetComponentInChildren<Slider>());
+                audioMenu.DecreaseVolume(items[selectedItemIdx].GetComponentInChildren<Slider>());
         }
     }
 }

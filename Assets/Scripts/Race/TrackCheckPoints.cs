@@ -14,10 +14,10 @@ public class TrackCheckPoints : MonoBehaviour
     [SerializeField] GameObject lapTextPrefab;
     private TextMeshProUGUI lapText;
 
-    private List<CheckpointTrigger> checkpointSingleList;
+    private List<CheckpointTrigger> checkpointTriggerList;
     private int nextCheckpointSingleIndex;
-    private List<CheckpointMissDetector> checkpointmissSingleList;
-    private List<PreCheckpointZoneTrigger> checkpointmissResetList;
+    private List<CheckpointMissDetector> checkpointMissDetectorList;
+    private List<PreCheckpointZoneTrigger> preCheckpointZoneTriggerList;
 
     private TimerController timerController;
     private CountDownController countDownController;
@@ -33,30 +33,30 @@ public class TrackCheckPoints : MonoBehaviour
         lapText.gameObject.SetActive(false);
 
         // CheckPointSingle komponensek referencia lekérése és hozzáadása a listához.
-        checkpointSingleList = new List<CheckpointTrigger>();
+        checkpointTriggerList = new List<CheckpointTrigger>();
         foreach (Transform checkpoint in transform.Find("CheckPoints"))
         {
             CheckpointTrigger checkpointSingle = checkpoint.GetComponent<CheckpointTrigger>();
             checkpointSingle.SetTrackCheckpoints(this);
-            checkpointSingleList.Add(checkpointSingle);
+            checkpointTriggerList.Add(checkpointSingle);
         }
 
         // CheckpointMissSingle komponensek referencia lekérése és hozzáadása a listához.
-        checkpointmissSingleList = new List<CheckpointMissDetector>();
+        checkpointMissDetectorList = new List<CheckpointMissDetector>();
         foreach (Transform checkpointMiss in transform.Find("CheckpointsMiss"))
         {
             CheckpointMissDetector checkpointmissSingle = checkpointMiss.GetComponent<CheckpointMissDetector>();
             checkpointmissSingle.SetTrackCheckpoints(this);
-            checkpointmissSingleList.Add(checkpointmissSingle);
+            checkpointMissDetectorList.Add(checkpointmissSingle);
         }
 
         // MissedCheckpointResetTrigger komponensek referencia lekérése és hozzáadása a listához.
-        checkpointmissResetList = new List<PreCheckpointZoneTrigger>();
+        preCheckpointZoneTriggerList = new List<PreCheckpointZoneTrigger>();
         foreach (Transform checkpointMissReset in transform.Find("CheckpointsMissReset"))
         {
             PreCheckpointZoneTrigger checkpointmissSingle = checkpointMissReset.GetComponent<PreCheckpointZoneTrigger>();
             checkpointmissSingle.SetTrackCheckpoints(this);
-            checkpointmissResetList.Add(checkpointmissSingle);
+            preCheckpointZoneTriggerList.Add(checkpointmissSingle);
         }
 
         // Kör és ellenõrzõpont indexek inicializálása.
@@ -73,11 +73,11 @@ public class TrackCheckPoints : MonoBehaviour
     private void Start()
     {
         // Az összes CheckPointSingle és CheckpointMissSingle inaktívvá tétele.
-        foreach (CheckpointTrigger single in checkpointSingleList)
+        foreach (CheckpointTrigger single in checkpointTriggerList)
           single.Disable();
-        foreach (CheckpointMissDetector single in checkpointmissSingleList)
+        foreach (CheckpointMissDetector single in checkpointMissDetectorList)
             single.Disable();
-        foreach (PreCheckpointZoneTrigger single in checkpointmissResetList)
+        foreach (PreCheckpointZoneTrigger single in preCheckpointZoneTriggerList)
             single.Disable();
 
         lapText.gameObject.SetActive(true);
@@ -86,14 +86,14 @@ public class TrackCheckPoints : MonoBehaviour
     public void PlayerThroughCheckpoint(CheckpointTrigger checkPointSingle)
     {
         // Ellenõrizzük, hogy a játékos az aktuális ellenõrzõpontot érte-e el.
-        if (checkpointSingleList.IndexOf(checkPointSingle) == nextCheckpointSingleIndex)
+        if (checkpointTriggerList.IndexOf(checkPointSingle) == nextCheckpointSingleIndex)
         {
             checkPointSingle.Disable();
 
             // A jelenlegi CheckpointMissSingle inaktívvá tétele.
-            checkpointmissSingleList[nextCheckpointSingleIndex].Disable();
+            checkpointMissDetectorList[nextCheckpointSingleIndex].Disable();
             // A jelenlegi ResetTrigger inaktívvá tétele.
-            checkpointmissResetList[nextCheckpointSingleIndex].Disable();
+            preCheckpointZoneTriggerList[nextCheckpointSingleIndex].Disable();
 
             if (nextCheckpointSingleIndex == 0)
             {
@@ -123,7 +123,7 @@ public class TrackCheckPoints : MonoBehaviour
             }
 
             // A következõ ellenõrzõpont indexének frissítése.
-            nextCheckpointSingleIndex = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
+            nextCheckpointSingleIndex = (nextCheckpointSingleIndex + 1) % checkpointTriggerList.Count;
 
             if (countDownController == null)
             {
@@ -134,30 +134,30 @@ public class TrackCheckPoints : MonoBehaviour
             countDownController.StopMissedCounter();
 
             // A következõ CheckpointSingle aktiválása
-            checkpointSingleList[nextCheckpointSingleIndex].Enable();
+            checkpointTriggerList[nextCheckpointSingleIndex].Enable();
             //CheckpointMissSingle aktiválása.
-            checkpointmissSingleList[nextCheckpointSingleIndex].Enable(); ;
+            checkpointMissDetectorList[nextCheckpointSingleIndex].Enable(); ;
 
             // ResetTrigger aktiválása
-            checkpointmissResetList[nextCheckpointSingleIndex].Enable();
+            preCheckpointZoneTriggerList[nextCheckpointSingleIndex].Enable();
         }
     }
 
     public void EnableFirstCheckpoint(CheckpointTrigger checkPointSingle)
     {
-        if (checkpointSingleList.IndexOf(checkPointSingle) == 0)
+        if (checkpointTriggerList.IndexOf(checkPointSingle) == 0)
             checkPointSingle.Enable();
     }
 
     public void EnableFirstCheckpointMiss(CheckpointMissDetector checkpointMiss)
     {
-        if (checkpointmissSingleList.IndexOf(checkpointMiss) == 0)
+        if (checkpointMissDetectorList.IndexOf(checkpointMiss) == 0)
             checkpointMiss.Enable();
     }
 
     public void EnableFirstCheckpointMissReset(PreCheckpointZoneTrigger resetTrigger)
     {
-        if (checkpointmissResetList.IndexOf(resetTrigger) == 0)
+        if (preCheckpointZoneTriggerList.IndexOf(resetTrigger) == 0)
             resetTrigger.Enable();
     }
 }

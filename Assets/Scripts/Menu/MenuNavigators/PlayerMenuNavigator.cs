@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Menu.MenuSettings;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerMenuNavigator : MenuNavigatorBase
 {
-    [SerializeField] private SettingsMenu settingsMenu;
+    [SerializeField] private PlayerMenu playerMenu;
 
     protected override void Update()
     {
@@ -21,7 +22,7 @@ public class PlayerMenuNavigator : MenuNavigatorBase
                 items[selectedItemIdx].GetComponent<Toggle>().isOn = true;
             }
             else
-                settingsMenu.PlayerSettingsChange(items[selectedItemIdx], 1);
+                playerMenu.PlayerSettingsChange(items[selectedItemIdx], 1);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -30,7 +31,7 @@ public class PlayerMenuNavigator : MenuNavigatorBase
                 items[selectedItemIdx].GetComponent<Toggle>().isOn = false;
             }
             else
-                settingsMenu.PlayerSettingsChange(items[selectedItemIdx], -1);
+                playerMenu.PlayerSettingsChange(items[selectedItemIdx], -1);
         }
     }
 }

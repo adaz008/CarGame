@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Menu.MenuSettings;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,9 @@ public class TimerController : MonoBehaviour
     private bool isStarted = false;
     private bool isEnded = false;
 
+    private List<float> lapTimes = new List<float>();
+    private RaceMenu raceMenu;
+
     private void Awake()
     {
         GameObject UIparent = GameObject.FindGameObjectWithTag("UI");
@@ -39,6 +43,11 @@ public class TimerController : MonoBehaviour
         timerText.text = "00:00.000";
         bestLapText.text = "00:00.000";
         currentLapText.text = "00:00.000";
+    }
+
+    public void setRaceMenu(RaceMenu menu)
+    {
+        raceMenu = menu;
     }
 
     private void OnDestroy()
@@ -94,6 +103,8 @@ public class TimerController : MonoBehaviour
         string timeStr = minute.ToString("00") + ":" + second.ToString("00.000");
         bestLapText.text = timeStr;
 
+        lapTimes.Add(currentTime);
+
         currentTime = 0f;
     }
 
@@ -101,6 +112,7 @@ public class TimerController : MonoBehaviour
     public void Stop()
     {
         Restart();
+        raceMenu?.FinishRace(lapTimes, bestLap, allTime);
         isStarted = false;
         isEnded = true;
     }
