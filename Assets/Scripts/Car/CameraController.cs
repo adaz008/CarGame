@@ -37,16 +37,16 @@ public class CameraController : MonoBehaviour
         Vector3 bumper = new Vector3(-2.4f, -0.02f, -0.008f);
         Vector3 back = new Vector3(-8f, 2f, -0.008f);
 
-        if (CarMovement.lookBack)
+        if (carMovement.LookBack)
         {
             transform.position = player.position - playerForward * 8f;
-            if (UserSettings.Instance.Camera == "Close" && carMovement.gasInput >= 0)
+            if (UserSettings.Instance.Camera == "Close" && carMovement.GasInput >= 0)
                 transform.position = player.position - playerForward * Distance_Offset_Close + Vector3.up * Height_Offset_Close;
-            if (UserSettings.Instance.Camera == "Close" && carMovement.gasInput < 0)
+            if (UserSettings.Instance.Camera == "Close" && carMovement.GasInput < 0)
                 transform.position = player.position + playerForward * Distance_Offset_Close + Vector3.up * Height_Offset_Close;
-            if (UserSettings.Instance.Camera == "Far" &&carMovement.gasInput >= 0)
+            if (UserSettings.Instance.Camera == "Far" && carMovement.GasInput >= 0)
                 transform.position = player.position - playerForward * Distance_Offset_Far + Vector3.up * Height_Offset_Far;
-            if (UserSettings.Instance.Camera == "Far" && carMovement.gasInput < 0)
+            if (UserSettings.Instance.Camera == "Far" && carMovement.GasInput < 0)
                 transform.position = player.position + playerForward * Distance_Offset_Far + Vector3.up * Height_Offset_Far;
             transform.LookAt(player);
         }
@@ -73,7 +73,7 @@ public class CameraController : MonoBehaviour
 
                 if (Vector3.Distance(transform.position, targetPosition) > 1)
                     transform.position = targetPosition;
-                else 
+                else
                     transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
 
                 transform.LookAt(player);
@@ -90,7 +90,7 @@ public class CameraController : MonoBehaviour
             else if (UserSettings.Instance.Camera == "Close" && UserSettings.Instance.ChangeCameraReverse)
             {
                 transform.position = Vector3.Lerp(transform.position,
-                player.position + Height_Offset_Close * Vector3.up 
+                player.position + Height_Offset_Close * Vector3.up
                 + playerForward * Distance_Offset_Close,
                 speed * Time.deltaTime);
 

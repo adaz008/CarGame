@@ -10,6 +10,7 @@ public class EngineAudio : MonoBehaviour
     private float maxVolume;
 
     private CarMovement carMovement;
+    private Motor motor;
     private float RPM;
     private float redline;
     private float gasInput;
@@ -20,8 +21,9 @@ public class EngineAudio : MonoBehaviour
     void Start()
     {
         carMovement = GetComponent<CarMovement>();
+        motor = GetComponent<Motor>();
         maxVolume = UserSettings.Instance.CarVolume;
-        redline = (float)carMovement.redLineStart;
+        redline = (float)motor.RedLineStart;
         MuteAll();
     }
 
@@ -30,8 +32,8 @@ public class EngineAudio : MonoBehaviour
     {
         if (carMovement)
         {
-            RPM = (float)carMovement.RPM;
-            gasInput = (float)carMovement.gasInput;
+            RPM = (float)motor.GetRPM();
+            gasInput = (float)carMovement.GasInput;
         }
 
         maxVolume = UserSettings.Instance.CarVolume;
@@ -106,7 +108,7 @@ public class EngineAudio : MonoBehaviour
         Audios.Idle.volume = 1;
         isEngineRunning = true;
         yield return new WaitForSeconds(0.4f);
-        carMovement.isEngineRunning = 2;
+        carMovement.SetIsEngineRunning(2);
     }
 }
 
