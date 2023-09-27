@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Assets.Scripts.Singletons;
-using Model;
 
 public static class SaveSystem
 {

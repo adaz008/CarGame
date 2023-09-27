@@ -1,15 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using UnityEngine.EventSystems;
-using System;
-using Random = UnityEngine.Random;
-using UnityEngine.UI;
-using Model;
-using System.Runtime.ConstrainedExecution;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
-using System.Xml;
 
 
 public class CarMovement : MonoBehaviour

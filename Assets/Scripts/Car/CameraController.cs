@@ -1,12 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Model;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Networking.Match;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using static UnityEngine.GraphicsBuffer;
 
 public class CameraController : MonoBehaviour
 {

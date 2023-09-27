@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Model;
-using System.Xml;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Motor : MonoBehaviour
 {

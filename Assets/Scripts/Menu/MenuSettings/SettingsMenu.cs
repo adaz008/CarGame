@@ -1,14 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
-using Button = UnityEngine.UI.Button;
-using Slider = UnityEngine.UI.Slider;
-using Toggle = UnityEngine.UI.Toggle;
-using Image = UnityEngine.UI.Image;
-using Model;
-using Unity.VisualScripting;
-using System.Diagnostics;
 
 public class SettingsMenu : MonoBehaviour
 {

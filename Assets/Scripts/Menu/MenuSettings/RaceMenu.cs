@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Singletons;
-using Model;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

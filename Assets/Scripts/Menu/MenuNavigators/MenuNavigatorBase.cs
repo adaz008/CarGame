@@ -1,19 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Button = UnityEngine.UI.Button;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
-using static UnityEditor.Progress;
-using UnityEngine.InputSystem.Android;
-using static UnityEngine.Rendering.DebugUI;
-using System.Drawing;
 using Color = UnityEngine.Color;
-using Model;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 public class MenuNavigatorBase : MonoBehaviour
 {
