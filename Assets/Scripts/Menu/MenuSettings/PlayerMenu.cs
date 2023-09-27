@@ -72,6 +72,11 @@ namespace Assets.Scripts.Menu.MenuSettings
                 toggle.onValueChanged.AddListener((value) => { ChangeToggleValue(toggle); });
             }
 
+            //Trick toggle onValueChanged
+            toggles[0].isOn = !UserSettings.Instance.Gauges;
+            toggles[1].isOn = !UserSettings.Instance.ChangeCameraReverse;
+            toggles[2].isOn = !UserSettings.Instance.Minimap;
+            //Real toggle onValueChanged
             toggles[0].isOn = UserSettings.Instance.Gauges;
             toggles[1].isOn = UserSettings.Instance.ChangeCameraReverse;
             toggles[2].isOn = UserSettings.Instance.Minimap;
@@ -80,11 +85,11 @@ namespace Assets.Scripts.Menu.MenuSettings
         public void ChangeToggleValue(Toggle toggle)
         {
             if (toggle.name == "SpeedoMeter")
-                SpeedometerOnOff.text = toggle.isOn ? "On" : "OFF";
+                SpeedometerOnOff.text = toggle.isOn ? "On" : "Off";
             if (toggle.name == "CameraSwitch")
-                CameraSwitchOnOff.text = toggle.isOn ? "On" : "OFF";
+                CameraSwitchOnOff.text = toggle.isOn ? "On" : "Off";
             if (toggle.name == "Minimap")
-                MinimapOnOff.text = toggle.isOn ? "On" : "OFF";
+                MinimapOnOff.text = toggle.isOn ? "On" : "Off";
         }
 
         public void SavePlayerSettings()

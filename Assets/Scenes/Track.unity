@@ -6049,7 +6049,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -6061,7 +6061,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -6089,7 +6089,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -6101,7 +6101,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -6159,19 +6159,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8487452}
-        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: ChangeToggleValue
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 55389935}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &58708662
 GameObject:
@@ -16755,6 +16743,7 @@ GameObject:
   - component: {fileID: 436913962}
   - component: {fileID: 436913963}
   - component: {fileID: 436913964}
+  - component: {fileID: 436913965}
   m_Layer: 5
   m_Name: PlayerScreen
   m_TagString: Untagged
@@ -16840,6 +16829,22 @@ MonoBehaviour:
   - {fileID: 609439123}
   - {fileID: 55389935}
   - {fileID: 692399872}
+--- !u!114 &436913965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436913961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a156a2bbc1028824e8aee555f79c0087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalTextColor: {r: 0.16862746, g: 0.105882354, b: 0.17254902, a: 1}
+  hoverTextColor: {r: 1, g: 1, b: 1, a: 1}
+  normalImageColor: {r: 0.16862746, g: 0.105882354, b: 0.17254902, a: 1}
+  hoverImageColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &440116709
 GameObject:
   m_ObjectHideFlags: 0
@@ -25330,6 +25335,7 @@ GameObject:
   - component: {fileID: 609439123}
   - component: {fileID: 609439122}
   - component: {fileID: 609439121}
+  - component: {fileID: 609439124}
   m_Layer: 5
   m_Name: SpeedoMeter
   m_TagString: Untagged
@@ -25412,7 +25418,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -25424,7 +25430,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -25452,7 +25458,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -25464,7 +25470,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -25522,20 +25528,22 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8487452}
-        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: ChangeToggleValue
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 609439123}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
+--- !u!114 &609439124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609439119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdac1830bab0804ea353527b7b6c218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftArrow: {fileID: 844789023}
+  rightArrow: {fileID: 1580614933}
 --- !u!1 &622593300
 GameObject:
   m_ObjectHideFlags: 0
@@ -27086,7 +27094,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -27098,7 +27106,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -27126,7 +27134,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -27138,7 +27146,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -27196,19 +27204,7 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8487452}
-        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: ChangeToggleValue
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 692399872}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Toggle, UnityEngine.UI
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_IsOn: 0
 --- !u!1 &702411745
 GameObject:
@@ -30245,7 +30241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &844789022
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41839,7 +41835,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -41851,7 +41847,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -41879,7 +41875,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -41891,7 +41887,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -43236,7 +43232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1429197525
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47871,7 +47867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1671925900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -51041,7 +51037,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -51053,7 +51049,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerEnterImage
           m_Mode: 2
@@ -51081,7 +51077,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2
@@ -51093,7 +51089,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 436913965}
           m_TargetAssemblyTypeName: UIColorChanger, Assembly-CSharp
           m_MethodName: OnPointerExitImage
           m_Mode: 2

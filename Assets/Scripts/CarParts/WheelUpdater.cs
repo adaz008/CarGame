@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 public class WheelUpdater : MonoBehaviour
@@ -30,9 +31,6 @@ public class WheelUpdater : MonoBehaviour
         }
         else
         {
-            Debug.Log("BrakePower:" + brakePower);
-            Debug.Log("BrakeInput:" + brakeInput);
-
             colliders.FRWheel.brakeTorque = brakeInput * brakePower * 0.7f;
             colliders.FLWheel.brakeTorque = brakeInput * brakePower * 0.7f;
 
