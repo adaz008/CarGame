@@ -29,10 +29,6 @@ public class BestlapTimes : MonoBehaviour
         {
             trackBestLapTimes = new Dictionary<string, float>();
         }
-
-
-        //trackBestLapTimes.Add("RaceTrack1Bestlap", 55.3f);
-        //trackBestLapTimes.Add("RaceTrack1Overall", 205.3f);
     }
 
     private Dictionary<string, float> constructDictionary(BestLapTimeData data)

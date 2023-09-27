@@ -36,19 +36,28 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private ControlsMenuNavigator MenuNavigator;
 
+    private bool isEnabled = true;
+
+    public void SetIsEnabled(bool value) { isEnabled = value; }
+
+    public void SetGameIsPaused(bool value) { GameIsPaused = value;}
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (isEnabled)
         {
-            if (GameIsPaused)
-                if (pauseMenuUi.activeInHierarchy)
-                    Resume();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (GameIsPaused)
+                    if (pauseMenuUi.activeInHierarchy)
+                        Resume();
+                    else
+                        MoveBack();
                 else
-                    MoveBack();
-            else
-                Pause();
+                    Pause();
+            }
         }
     }
 
@@ -69,7 +78,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUi.SetActive(false);
-        
+
         enter.SetActive(false);
         esc.SetActive(false);
 
@@ -77,9 +86,9 @@ public class PauseMenu : MonoBehaviour
         Minimap.SetActive(UserSettings.Instance.Minimap);
         SpeedoMeter.SetActive(UserSettings.Instance.Gauges);
 
-       Time.timeScale = 1f;
+        Time.timeScale = 1f;
 
-       GameIsPaused = false;
+        GameIsPaused = false;
     }
 
     private void Pause()
@@ -96,5 +105,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
 
         GameIsPaused = true;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }

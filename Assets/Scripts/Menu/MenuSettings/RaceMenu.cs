@@ -16,6 +16,9 @@ namespace Assets.Scripts.Menu.MenuSettings
         [SerializeField] private Image startRace;
         [SerializeField] private Image endRace;
         [SerializeField] private Button PauseMenuBack;
+
+        [Header("EndRaceMenu")]
+        [SerializeField] private EndRaceMenu endRaceMenu;
         private bool isRace = false;
 
         private GameObject timerGameObject;
@@ -112,6 +115,8 @@ namespace Assets.Scripts.Menu.MenuSettings
             isRace = false;
             startRace.gameObject.SetActive(true);
             endRace.gameObject.SetActive(false);
+
+            endRaceMenu.ShowEndScreen(laptimes, bestlap, overallTime, trackPrefabName);
         }
     }
 }

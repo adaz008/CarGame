@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c54922b2a1746c140941919d6aa4d3a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lapCount: 2
+  lapCount: 3
   currentLap: 0
   lapTextPrefab: {fileID: 2997572542469211345, guid: 1ec0e34e84c83764eaa5356812a82778, type: 3}
 --- !u!1 &7622717065035996587
