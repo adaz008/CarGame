@@ -22,7 +22,7 @@ namespace Assets.Scripts.Menu.MenuSettings
         [Header("Toggles")]
         [SerializeField] private Toggle[] toggles;
 
-        private string[] CameraTypes = { "Close", "Far", "Hood", "Bumper" };
+        private string[] CameraTypes = { "Close", "Far", "Hood", "Bumper", "Inside"};
         private string[] TransmissionTypes = { "Auto", "Manual" };
         private string[] ControlsTypes = { "Keyboard", "Controller" };
 

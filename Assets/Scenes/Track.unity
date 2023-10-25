@@ -25653,11 +25653,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 707284964}
-  Distance_Offset_Close: 10
-  Distance_Offset_Far: 15
-  Height_Offset_Close: 2
-  Height_Offset_Far: 3
+  Distance_Offset_Close: 0
+  Distance_Offset_Far: 0
+  Height_Offset: 0
   speed: 3
+  hood: {x: 0, y: 0, z: 0}
+  bumper: {x: 0, y: 0, z: 0}
+  inside: {x: 0, y: 0, z: 0}
 --- !u!81 &622593304
 AudioListener:
   m_ObjectHideFlags: 0
@@ -54767,8 +54769,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017728795}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.46, y: 3, z: -9.3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54823,9 +54825,11 @@ MonoBehaviour:
   player: {fileID: 143176503350751107}
   Distance_Offset_Close: 10
   Distance_Offset_Far: 15
-  Height_Offset_Close: 3
-  Height_Offset_Far: 3
+  Height_Offset: 3
   speed: 3
+  hood: {x: 0, y: 1.466, z: 0.337}
+  bumper: {x: 0, y: 0.681, z: 2.3}
+  inside: {x: -0.41, y: 1.35, z: -0.62}
 --- !u!81 &2017728799
 AudioListener:
   m_ObjectHideFlags: 0
@@ -54850,7 +54854,7 @@ Camera:
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -54859,7 +54863,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -57275,7 +57279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772221006371042617}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1026.27, y: 0.8, z: -292.38}
+  m_LocalPosition: {x: -1026.27, y: -0.11, z: -292.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -63783,8 +63787,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f8f478da02986a645b4c285eed21a29f, type: 2}
   - {fileID: 2100000, guid: 36839ffce495f3b4b87cdf7145e56506, type: 2}
+  - {fileID: 2100000, guid: f8f478da02986a645b4c285eed21a29f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
