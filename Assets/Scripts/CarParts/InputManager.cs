@@ -1,3 +1,4 @@
+using Assets.Scripts.Menu.MenuSettings;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -59,7 +60,10 @@ public class InputManager : MonoBehaviour
         NitroEffect.boosting = Input.GetKey(UserSettings.Instance.Nitro_Keyboard) ? true : false;
 
 
-
+        if (Input.GetKeyDown(UserSettings.Instance.ChangeCamera_Keyboard))
+        {
+            UserSettings.Instance.nextCamera();
+        }
 
 
         if ((gasInput == 0 &&
