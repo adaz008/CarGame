@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Singletons;
+﻿using System;
+using Assets.Scripts.Singletons;
 using UnityEngine;
 public class UserSettings : MonoBehaviour
 {
@@ -17,10 +18,10 @@ public class UserSettings : MonoBehaviour
         UserSettingsData data = SaveSystem.LoadData<UserSettingsData>("userSettings.json");
 
 
-        CarVolume = data?.CarVolume ?? 0.5f;
-        SoundEffectVolume = data?.SoundEffectVolume ?? 0.5f;
-        MenuMusicVolume = data?.MenuMusicVolume ?? 0.5f;
-        GameMusicVolume = data?.GameMusicVolume ?? 0.5f;
+        CarVolume = data?.CarVolume ?? 0.15f;
+        SoundEffectVolume = data?.SoundEffectVolume ?? 0.75f;
+        MenuMusicVolume = data?.MenuMusicVolume ?? 0.1f;
+        GameMusicVolume = data?.GameMusicVolume ?? 0.2f;
 
         Transmission = data == null ? "Auto" : data.Transmission;
         Camera = data == null ? "Close" : data.Camera;
@@ -40,6 +41,18 @@ public class UserSettings : MonoBehaviour
         LookBack_Keyboard = data == null ? KeyCode.L : IntToKeyCode(data.LookBack_Keyboard);
         ChangeCamera_Keyboard = data == null ? KeyCode.C : IntToKeyCode(data.ChangeCamera_Keyboard);
     }
+
+    private string[] CameraTypes = { "Close", "Far", "Hood", "Bumper", "Inside" };
+
+    public void nextCamera()
+    {
+        int index = Array.IndexOf(CameraTypes, Camera);
+
+        index = (index + 1) % CameraTypes.Length;
+
+        Camera = CameraTypes[index];
+    }
+
 
     // Converts an integer to a KeyCode
     private KeyCode IntToKeyCode(int value)

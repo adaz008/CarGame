@@ -12,6 +12,14 @@ public class CarUIManager : MonoBehaviour
     [SerializeField] private float minRPMNeedleRotation;
     [SerializeField] private float maxRPMNeedleRotation;
     [SerializeField] private Image needleCircle;
+    [Header("InsideUI")]
+    [SerializeField] private GameObject insideSpeedoMeter;
+    [SerializeField] private TMP_Text speedTextInside;
+    [SerializeField] private TMP_Text khmText;
+    [SerializeField] private TMP_Text gearTextInside;
+    [SerializeField] private TMP_Text rpmTextInside;
+    [SerializeField] private TMP_Text rpmText;
+    [SerializeField] private Image needleCircleInside;
 
     [Header("Brake lamp")]
     [SerializeField] private Material brakeMaterial;
@@ -20,6 +28,21 @@ public class CarUIManager : MonoBehaviour
 
     [SerializeField] Transmission transmission;
     [SerializeField] Motor motor;
+
+    private void Update()
+    {
+        ShowInside(UserSettings.Instance.Camera == "Inside");
+        if (PauseMenu.GameIsPaused)
+        {
+            ShowInside(false);
+        }
+    }
+
+    private void ShowInside(bool value)
+    {
+        insideSpeedoMeter.gameObject.SetActive(value);
+
+    }
 
 
     public void UpdateUI(int KPH)
@@ -30,15 +53,27 @@ public class CarUIManager : MonoBehaviour
         float redLineEnd = motor.RedLineEnd;
 
         rpmNeedle.rotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(minRPMNeedleRotation, maxRPMNeedleRotation, RPM / redLineEnd));
+        rpmTextInside.text = ((int)RPM).ToString();
 
         speedText.text = KPH.ToString();
+        speedTextInside.text = KPH.ToString();
 
         if (gearState == GearState.Neutral)
+        {
             gearText.text = "N";
+            gearTextInside.text = "N";
+        }
         else if (gearState == GearState.Reverse)
+        {
             gearText.text = "R";
+            gearTextInside.text = "R";
+        }
         else
+        {
             gearText.text = (currentGear + 1).ToString();
+            gearTextInside.text = (currentGear + 1).ToString();
+        }
+
     }
 
     public void CheckRedLine()
@@ -49,11 +84,18 @@ public class CarUIManager : MonoBehaviour
         {
             needleCircle.color = Color.red;
             gearText.color = Color.red;
+            needleCircleInside.color = Color.red;
+            gearTextInside.color = Color.red;
+            rpmTextInside.color = Color.red;
         }
         else
         {
             needleCircle.color = Color.white;
             gearText.color = Color.white;
+            needleCircleInside.color = new Color(0f / 255f, 212f / 255f, 1f, 1f);
+            gearTextInside.color = new Color(0f / 255f, 212f / 255f, 1f, 1f);
+            rpmTextInside.color = new Color(0f / 255f, 212f / 255f, 1f, 1f);
+
         }
     }
 

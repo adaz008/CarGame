@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -22,22 +23,35 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Vector3 bumper;
     [SerializeField] private Vector3 inside;
 
+    private string currentCamera;
+
     private void Start()
     {
         playerRB = player.GetComponent<Rigidbody>();
         carMovement = player.GetComponent<CarMovement>();
+        currentCamera = UserSettings.Instance.Camera;
     }
 
     private void LateUpdate()
     {
         Vector3 playerForward = (-playerRB.velocity - player.transform.forward).normalized;
 
+        //if(UserSettings.Instance.Camera != currentCamera)
+        //{
+        //    fixCameraRotation(currentCamera);
+        //    currentCamera = UserSettings.Instance.Camera;
+        //}
+
+        bool isCameraChanged = UserSettings.Instance.Camera != currentCamera;
+
         if (UserSettings.Instance.Camera == "Hood")
-            SetCameraPosition(hood);
+            SetCameraPosition(hood, isCameraChanged);
         else if (UserSettings.Instance.Camera == "Bumper")
-            SetCameraPosition(bumper);
+            SetCameraPosition(bumper, isCameraChanged);
         else if (UserSettings.Instance.Camera == "Inside")
-            SetCameraPosition(inside);
+            SetCameraPosition(inside, isCameraChanged);
+
+        currentCamera = UserSettings.Instance.Camera;
 
         float distanceOffSet = UserSettings.Instance.Camera == "Close" ? Distance_Offset_Close : Distance_Offset_Far;
 
@@ -54,8 +68,25 @@ public class CameraController : MonoBehaviour
         HandleCameraFieldOfView();
     }
 
-    private void SetCameraPosition(Vector3 position)
+    //private void fixCameraRotation(string CameraType)
+    //{
+    //    //float currentValue = CameraType == "Close" ? Mathf.Sin(Height_Offset / Distance_Offset_Close) : Mathf.Sin(Height_Offset / Distance_Offset_Far);
+
+    //    //transform.rotation = Quaternion.Euler(currentValue, 0f, 0f);
+
+    //    transform.position
+    //}
+
+    private void SetCameraPosition(Vector3 position, bool isCameraChanged)
     {
+        //Camera rotation helyreallitas
+        if (isCameraChanged)
+        {
+            Vector3 targetPosition = player.position - player.forward * Distance_Offset_Close;
+            transform.position = targetPosition;
+            transform.LookAt(player);
+        }
+
         transform.position = player.TransformPoint(position);
     }
 
