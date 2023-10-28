@@ -1,4 +1,5 @@
 using Assets.Scripts.Menu.MenuSettings;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,5 +18,11 @@ public class AudioMenuNavigator : MenuNavigatorBase
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
                 audioMenu.DecreaseVolume(items[selectedItemIdx].GetComponentInChildren<Slider>());
         }
+    }
+
+    public void OnDeactivate()
+    {
+        TextMeshProUGUI[] texts = items[selectedItemIdx].GetComponentsInChildren<TextMeshProUGUI>();
+        texts[2].gameObject.SetActive(false);
     }
 }

@@ -1,10 +1,12 @@
 using Assets.Scripts.Menu.MenuSettings;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerMenuNavigator : MenuNavigatorBase
 {
     [SerializeField] private PlayerMenu playerMenu;
+    [SerializeField] private UIColorChanger colorChanger;
 
     protected override void Update()
     {
@@ -42,30 +44,39 @@ public class PlayerMenuNavigator : MenuNavigatorBase
             }
         }
     }
+
+    public void OnDeactivate()
+    {
+        TextMeshProUGUI[] texts = items[selectedItemIdx].GetComponentsInChildren<TextMeshProUGUI>();
+        texts[2].gameObject.SetActive(false);
+
+        Component component = items[selectedItemIdx].GetComponent<Component>();
+
+        Transform child = component.transform.GetChild(0);
+
+        if (child != null)
+        {
+            Image leftImage = child.Find("LeftArrow").GetComponent<Image>();
+            Image rightImage = child.Find("RightArrow").GetComponent<Image>();
+
+            colorChanger.OnPointerExitImage(leftImage);
+            colorChanger.OnPointerExitImage(rightImage);
+        }
+
+    }
+
     private void SetIsToggleArrow(Toggle toggle)
     {
-        Debug.Log("Set toggle Arrow for:" + toggle.name);
-        Debug.Log("Value:" + toggle.isOn);
-
         Transform toggleTransform = toggle.transform;
         Transform child = toggleTransform.GetChild(0);
 
-        for (int i = 0; i < child.childCount; i++)
+        if (child != null)
         {
-            Transform grandChildTransform = child.GetChild(i);
-            Image imageComponent = grandChildTransform.GetComponent<Image>();
+            Image leftImage = child.Find("LeftArrow").GetComponent<Image>();
+            Image rightImage = child.Find("RightArrow").GetComponent<Image>();
 
-            if (imageComponent != null)
-            {
-                if (imageComponent.name.Contains("Left"))
-                {
-                    imageComponent.gameObject.SetActive(toggle.isOn);
-                }
-                else if (imageComponent.name.Contains("Right"))
-                {
-                    imageComponent.gameObject.SetActive(!toggle.isOn);
-                }
-            }
+            leftImage.gameObject.SetActive(toggle.isOn);
+            rightImage.gameObject.SetActive(!toggle.isOn);
         }
     }
 
