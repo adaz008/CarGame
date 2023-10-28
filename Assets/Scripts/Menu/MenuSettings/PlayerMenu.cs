@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,11 @@ namespace Assets.Scripts.Menu.MenuSettings
         public void Start()
         {
             InitializePlayerSettings();
+        }
+
+        private void OnEnable()
+        {
+            InitializeCameraSettings();
         }
 
         private void InitializePlayerSettings()

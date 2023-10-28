@@ -60,6 +60,11 @@ public class PauseMenu : MonoBehaviour
                     Pause();
             }
         }
+
+        if (!GameIsPaused)
+        {
+            RearViewMirror.SetActive(UserSettings.Instance.RearViewMirror && UserSettings.Instance.Camera != "Inside");
+        }
     }
 
     private void MoveBack()
