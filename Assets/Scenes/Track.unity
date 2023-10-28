@@ -19610,7 +19610,7 @@ GameObject:
   - component: {fileID: 546369794}
   - component: {fileID: 546369793}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: RearViewCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19695,7 +19695,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 255
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 2e1814790bc2d7e42a3d29a92eb7249c, type: 2}
   m_TargetDisplay: 0
@@ -61846,6 +61846,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11ff95487654ba47b18003fc0492abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetPos: {x: 0, y: 0, z: 0}
+  resetRot: {x: 0, y: 0, z: 0, w: 1}
+  resetVelocity: {x: 0, y: 0, z: 0}
+  resetGearState: 0
+  resetGearIndex: 0
+  resetRPM: 0
   transmission: {fileID: 772221006371042630}
   motor: {fileID: 772221006371042631}
 --- !u!114 &772221006371042627
