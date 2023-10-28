@@ -36,12 +36,6 @@ public class CameraController : MonoBehaviour
     {
         Vector3 playerForward = (-playerRB.velocity - player.transform.forward).normalized;
 
-        //if(UserSettings.Instance.Camera != currentCamera)
-        //{
-        //    fixCameraRotation(currentCamera);
-        //    currentCamera = UserSettings.Instance.Camera;
-        //}
-
         bool isCameraChanged = UserSettings.Instance.Camera != currentCamera;
 
         if (UserSettings.Instance.Camera == "Hood")
@@ -55,32 +49,27 @@ public class CameraController : MonoBehaviour
 
         float distanceOffSet = UserSettings.Instance.Camera == "Close" ? Distance_Offset_Close : Distance_Offset_Far;
 
-        if (carMovement.LookBack && (UserSettings.Instance.Camera == "Close" || UserSettings.Instance.Camera == "Far"))
+        if (UserSettings.Instance.Camera == "Close" || UserSettings.Instance.Camera == "Far")
         {
-            Vector3 forward = (playerForward.x > 0 && playerForward.z > 0) ? -playerForward : playerForward;
-            SetCameraPositionFarClose(forward, distanceOffSet);
-        }
-        else if (UserSettings.Instance.Camera == "Close" || UserSettings.Instance.Camera == "Far")
-        {
-            SetCameraPositionFarClose(playerForward, distanceOffSet);
+            if (!carMovement.LookBack)
+            {
+                SetCameraPositionFarClose(playerForward, distanceOffSet);
+            }else
+            {
+                //Vector3 forward = (playerForward.x > 0 && playerForward.z > 0) ? -playerForward : playerForward;
+                //Debug.Log("PlayerForward: " + playerForward);
+                //Debug.Log("Forward: " + forward);
+                SetCameraPositionFarClose(-playerForward, distanceOffSet);
+            }
         }
 
         HandleCameraFieldOfView();
     }
 
-    //private void fixCameraRotation(string CameraType)
-    //{
-    //    //float currentValue = CameraType == "Close" ? Mathf.Sin(Height_Offset / Distance_Offset_Close) : Mathf.Sin(Height_Offset / Distance_Offset_Far);
-
-    //    //transform.rotation = Quaternion.Euler(currentValue, 0f, 0f);
-
-    //    transform.position
-    //}
-
-    private void SetCameraPosition(Vector3 position, bool isCameraChanged)
+    private void SetCameraPosition(Vector3 position, bool isChanged)
     {
         //Camera rotation helyreallitas
-        if (isCameraChanged)
+        if (isChanged)
         {
             Vector3 targetPosition = player.position - player.forward * Distance_Offset_Close;
             transform.position = targetPosition;
@@ -93,17 +82,27 @@ public class CameraController : MonoBehaviour
     private void SetCameraPositionFarClose(Vector3 playerForward, float distance)
     {
         Vector3 targetPosition = player.position + Height_Offset * Vector3.up - player.forward * distance;
+        Vector3 backwardTargetPosition = player.position + Height_Offset * Vector3.up + player.forward * distance;
 
-        if (UserSettings.Instance.ChangeCameraReverse)
-            transform.position = Vector3.Lerp(transform.position,
-                player.position + Height_Offset * Vector3.up + playerForward * distance,
-                speed * Time.deltaTime);
-        else
+        if (carMovement.LookBack)
+        {
+            if (Vector3.Distance(transform.position, backwardTargetPosition) > 1)
+                transform.position = backwardTargetPosition;
+            else
+                transform.position = Vector3.Lerp(transform.position, backwardTargetPosition, speed * Time.deltaTime);
+        }
+        else if (!UserSettings.Instance.ChangeCameraReverse)
         {
             if (Vector3.Distance(transform.position, targetPosition) > 1)
                 transform.position = targetPosition;
             else
                 transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+        }
+        else if (UserSettings.Instance.ChangeCameraReverse)
+        {
+            transform.position = Vector3.Lerp(transform.position,
+                player.position + Height_Offset * Vector3.up + playerForward * distance,
+                speed * Time.deltaTime);
         }
 
         transform.LookAt(player);

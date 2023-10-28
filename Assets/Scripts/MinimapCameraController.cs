@@ -16,11 +16,8 @@ public class MinimapCameraController : MonoBehaviour
         newPosition.y = transform.position.y;
         transform.position = newPosition;
 
-        Debug.Log(player.rotation.eulerAngles.y);
-
         float mapCameraRotation = (360f - player.rotation.eulerAngles.y) % 360f;
 
-        // Állítsd be a kamera forgatását a kívánt értékre
         transform.rotation = Quaternion.Euler(90f, 0f, mapCameraRotation);
 
         if (PauseMenu.GameIsPaused)
