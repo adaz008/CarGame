@@ -12,6 +12,7 @@ namespace Assets.Scripts.Menu.MenuSettings
         [SerializeField] private TextMeshProUGUI SpeedometerOnOff;
         [SerializeField] private TextMeshProUGUI CameraSwitchOnOff;
         [SerializeField] private TextMeshProUGUI MinimapOnOff;
+        [SerializeField] private TextMeshProUGUI RearViewMirrorOnOff;
 
         private int cameraTypeIndex = 0;
         [SerializeField] private Button[] changeCameraButton;
@@ -76,10 +77,12 @@ namespace Assets.Scripts.Menu.MenuSettings
             toggles[0].isOn = !UserSettings.Instance.Gauges;
             toggles[1].isOn = !UserSettings.Instance.ChangeCameraReverse;
             toggles[2].isOn = !UserSettings.Instance.Minimap;
+            toggles[3].isOn = !UserSettings.Instance.RearViewMirror;
             //Real toggle onValueChanged
             toggles[0].isOn = UserSettings.Instance.Gauges;
             toggles[1].isOn = UserSettings.Instance.ChangeCameraReverse;
             toggles[2].isOn = UserSettings.Instance.Minimap;
+            toggles[3].isOn = UserSettings.Instance.RearViewMirror;
         }
 
         public void ChangeToggleValue(Toggle toggle)
@@ -90,6 +93,8 @@ namespace Assets.Scripts.Menu.MenuSettings
                 CameraSwitchOnOff.text = toggle.isOn ? "On" : "Off";
             if (toggle.name == "Minimap")
                 MinimapOnOff.text = toggle.isOn ? "On" : "Off";
+            if (toggle.name == "RearView")
+                RearViewMirrorOnOff.text = toggle.isOn ? "On" : "Off";
         }
 
         public void SavePlayerSettings()
@@ -98,6 +103,7 @@ namespace Assets.Scripts.Menu.MenuSettings
             UserSettings.Instance.Gauges = toggles[0].isOn;
             UserSettings.Instance.ChangeCameraReverse = toggles[1].isOn;
             UserSettings.Instance.Minimap = toggles[2].isOn;
+            UserSettings.Instance.RearViewMirror = toggles[3].isOn;
 
             UserSettings.Instance.Camera = CameraType.text;
             UserSettings.Instance.Transmission = TransmissionType.text;

@@ -16,6 +16,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject blurUI;
     [SerializeField] private GameObject SpeedoMeter;
     [SerializeField] private GameObject Minimap;
+    [SerializeField] private GameObject RearViewMirror;
 
     [Header("Back Buttons")]
     [SerializeField] private Button SettingsBack;
@@ -36,6 +37,12 @@ public class PauseMenu : MonoBehaviour
 
     public void SetGameIsPaused(bool value) { GameIsPaused = value;}
 
+    private void Start()
+    {
+        Minimap.SetActive(UserSettings.Instance.Minimap);
+        SpeedoMeter.SetActive(UserSettings.Instance.Gauges);
+        RearViewMirror.SetActive(UserSettings.Instance.RearViewMirror);
+    }
 
     // Update is called once per frame
     void Update()
@@ -79,6 +86,7 @@ public class PauseMenu : MonoBehaviour
         blurUI.SetActive(false);
         Minimap.SetActive(UserSettings.Instance.Minimap);
         SpeedoMeter.SetActive(UserSettings.Instance.Gauges);
+        RearViewMirror.SetActive(UserSettings.Instance.RearViewMirror);
 
         Time.timeScale = 1f;
 
@@ -95,6 +103,7 @@ public class PauseMenu : MonoBehaviour
         blurUI.SetActive(true);
         Minimap.SetActive(false);
         SpeedoMeter.SetActive(false);
+        RearViewMirror.SetActive(false);
 
         Time.timeScale = 0f;
 

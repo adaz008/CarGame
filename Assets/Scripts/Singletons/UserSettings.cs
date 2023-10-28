@@ -28,6 +28,7 @@ public class UserSettings : MonoBehaviour
         ChangeCameraReverse = data == null ? false : data.ChangeCameraReverse;
         Gauges = data == null ? true : data.Gauges;
         Minimap = data == null ? true : data.Minimap;
+        RearViewMirror = data == null ? true : data.RearViewMirror;
 
         Accelerate_Keyboard = data == null ? KeyCode.UpArrow : IntToKeyCode(data.Accelerate_Keyboard);
         Brake_Reverse_Keyboard = data == null ? KeyCode.DownArrow : IntToKeyCode(data.Brake_Reverse_Keyboard);
@@ -72,6 +73,8 @@ public class UserSettings : MonoBehaviour
     public bool Gauges { get; set; }
     public bool Minimap { get; set; } //On-Off
     public bool ChangeCameraReverse { get; set; } //On-off, ötlet
+
+    public bool RearViewMirror { get; set; }
 
     //Control-Keyboard
     private KeyCode[] keyCodesKeyboard = new KeyCode[11];

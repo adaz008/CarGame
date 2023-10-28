@@ -18,6 +18,7 @@ namespace Assets.Scripts.Singletons
         public bool Gauges;
         public bool Minimap;
         public bool ChangeCameraReverse;
+        public bool RearViewMirror;
 
         //Keyboard settings
         public int Accelerate_Keyboard;
@@ -44,6 +45,7 @@ namespace Assets.Scripts.Singletons
             Gauges = userSettings.Gauges;
             Minimap = userSettings.Minimap;
             ChangeCameraReverse = userSettings.ChangeCameraReverse;
+            RearViewMirror = userSettings.RearViewMirror; 
 
             Accelerate_Keyboard = KeyCodeToInt(userSettings.Accelerate_Keyboard);
             Brake_Reverse_Keyboard = KeyCodeToInt(userSettings.Brake_Reverse_Keyboard);
