@@ -16,9 +16,19 @@ You can configure these settings within the in-game menu, and they are saved wit
 - Camera
 - Gear shift
 
-In the 🔊 sound settings, you can adjust the sound of the car, menu effects,menu and game music too..
+In the 🔊 sound settings, you can adjust the sound of the car, menu effects,menu and game music too.
 
 In the 📷 camera settings, the "close", "far", "bumper", "hood" and "inside" options are functional.
+
+An optional rear view mirror is in the game, which can be used in all camera settings except "Inside".
+
+![Audio settings](docs/Audio_Settings.png) | ![Player Settings](docs/Player_Settings.png)
+:-----------------------------------:|:------------------------------------:
+Audio Settings                            | Player Settings
+
+![Controls Settings](docs/Controls_Settings.png)
+Controls Settings                          
+
 
 ## 🏁 Race Tracks
 Currently, these tracks are available, and the game saves your best lap times.
@@ -26,6 +36,12 @@ Currently, these tracks are available, and the game saves your best lap times.
 ![First Map](Assets/UI/tracks/map.png) | ![Second Map](Assets/UI/tracks/10.png)
 :-----------------------------------:|:------------------------------------:
 First Map                            | Second Map
+
+End race:
+![End Race Screen](docs/End_Race_Screen.png)
+
+But other track may come to the game:
+![All_Tracks](docs/Track_Selector.png)
 
 ## ⬇️ Download the Game
 You can download the .exe version of the game from [Download the Game](https://drive.google.com/drive/folders/11VRT0yN6IS5HW7ZBRlp8eMPFdEScizlN?usp=drive_link).
