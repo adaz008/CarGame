@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SettingsUIManager : MonoBehaviour
 {
@@ -29,41 +30,31 @@ public class SettingsUIManager : MonoBehaviour
 
     public void OpenAudioSettings()
     {
-        settingsMenuCanvas.SetActive(true);
-        audioSettingsCanvas.SetActive(true);
-        playerSettingsCanvas.SetActive(false);
-        controlsSettingsCanvas.SetActive(false);
-
-        settingsMenuNavigator.enabled = false;
+        setActiveCanvas(audioSettingsCanvas, false);
     }
 
     public void OpenPlayerSettings()
     {
-        settingsMenuCanvas.SetActive(true);
-        audioSettingsCanvas.SetActive(false);
-        playerSettingsCanvas.SetActive(true);
-        controlsSettingsCanvas.SetActive(false);
-
-        settingsMenuNavigator.enabled = false;
+        setActiveCanvas(playerSettingsCanvas, false);
     }
 
     public void OpenControlsSettings()
     {
-        settingsMenuCanvas.SetActive(true);
-        audioSettingsCanvas.SetActive(false);
-        playerSettingsCanvas.SetActive(false);
-        controlsSettingsCanvas.SetActive(true);
-
-        settingsMenuNavigator.enabled = false;
+        setActiveCanvas(controlsSettingsCanvas, false);
     }
 
     public void OpenSettingsMenu()
     {
-        settingsMenuCanvas.SetActive(true);
-        audioSettingsCanvas.SetActive(false);
-        playerSettingsCanvas.SetActive(false);
-        controlsSettingsCanvas.SetActive(false);
+        setActiveCanvas(settingsMenuCanvas, true);
+    }
 
-        settingsMenuNavigator.enabled = true;
+    public void setActiveCanvas(GameObject current, bool isMenunavigatorEnabled)
+    {
+        settingsMenuCanvas.SetActive(true);
+        audioSettingsCanvas.SetActive(audioSettingsCanvas == current);
+        playerSettingsCanvas.SetActive(playerSettingsCanvas == current);
+        controlsSettingsCanvas.SetActive(controlsSettingsCanvas == current);
+
+        settingsMenuNavigator.enabled = isMenunavigatorEnabled;
     }
 }
