@@ -24,12 +24,6 @@ public class ControlsMenuNavigator : MenuNavigatorBase
         }
     }
 
-    public void OnDeactivate()
-    {
-        TextMeshProUGUI[] texts = items[selectedItemIdx].GetComponentsInChildren<TextMeshProUGUI>();
-        texts[2].gameObject.SetActive(false);
-    }
-
     private IEnumerator OnSelect(TextMeshProUGUI text)
     {
         //Legyen egy beolvasás minimum az enter előtt

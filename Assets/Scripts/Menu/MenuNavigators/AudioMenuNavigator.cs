@@ -19,10 +19,4 @@ public class AudioMenuNavigator : MenuNavigatorBase
                 audioMenu.DecreaseVolume(items[selectedItemIdx].GetComponentInChildren<Slider>());
         }
     }
-
-    public void OnDeactivate()
-    {
-        TextMeshProUGUI[] texts = items[selectedItemIdx].GetComponentsInChildren<TextMeshProUGUI>();
-        texts[2].gameObject.SetActive(false);
-    }
 }

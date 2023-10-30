@@ -45,11 +45,9 @@ public class PlayerMenuNavigator : MenuNavigatorBase
         }
     }
 
-    public void OnDeactivate()
+    protected override void OnDeactivate()
     {
-        TextMeshProUGUI[] texts = items[selectedItemIdx].GetComponentsInChildren<TextMeshProUGUI>();
-        texts[2].gameObject.SetActive(false);
-
+        base.OnDeactivate();
         Component component = items[selectedItemIdx].GetComponent<Component>();
 
         Transform child = component.transform.GetChild(0);
