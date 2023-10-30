@@ -1,4 +1,5 @@
 using System;
+using Assets.Scripts.Menu.MenuSettings;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -84,6 +85,16 @@ public class PauseMenu : MonoBehaviour
             SettingsBack.onClick.Invoke();
 
         OnBackPressed?.Invoke();
+    }
+
+    private void OnEnable()
+    {
+        RaceMenu.RaceStart += Resume;
+    }
+
+    private void OnDisable()
+    {
+        RaceMenu.RaceStart -= Resume;
     }
 
     public void Resume()

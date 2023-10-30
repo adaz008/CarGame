@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Singletons;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,11 +26,13 @@ namespace Assets.Scripts.Menu.MenuSettings
         private GameObject countDownGameObject;
 
         private string trackPrefabName;
+        public static event Action RaceStart;
 
         public void Start() { }
 
         public void StartRace(GameObject trackPrefab)
         {
+            RaceStart?.Invoke();
             isRace = true;
             startRace.gameObject.SetActive(false);
             endRace.gameObject.SetActive(true);

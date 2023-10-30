@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ControlsMenuNavigator : MenuNavigatorBase
 {
+    public static event Action OnControlsEditing;
     protected bool isEditing = false;
 
     public bool getIsEditing()
@@ -20,6 +21,7 @@ public class ControlsMenuNavigator : MenuNavigatorBase
         {
             TextMeshProUGUI[] texts = items[selectedItemIdx].GetComponentsInChildren<TextMeshProUGUI>();
             isEditing = true;
+            OnControlsEditing?.Invoke();
             StartCoroutine(OnSelect(texts[1]));
         }
     }

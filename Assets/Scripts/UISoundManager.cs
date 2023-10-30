@@ -10,12 +10,16 @@ public class UISoundManager : MonoBehaviour
     {
         PauseMenu.OnBackPressed += PlayCloseSound;
         MenuNavigatorBase.Hover += PlayHoverSound;
+        UIManger.OnOpenUI += PlayClickSound;
+        ControlsMenuNavigator.OnControlsEditing += PlayClickSound;
     }
 
     private void OnDisable()
     {
         PauseMenu.OnBackPressed -= PlayCloseSound;
         MenuNavigatorBase.Hover -= PlayHoverSound;
+        UIManger.OnOpenUI -= PlayClickSound;
+        ControlsMenuNavigator.OnControlsEditing -= PlayClickSound;
     }
 
     private void PlayCloseSound()
@@ -27,6 +31,12 @@ public class UISoundManager : MonoBehaviour
     {
         sources.UIHover.volume = UserSettings.Instance.SoundEffectVolume;
         sources.UIHover.Play();
+    }
+
+    private void PlayClickSound()
+    {
+        sources.UIClick.volume = UserSettings.Instance.SoundEffectVolume;
+        sources.UIClick.Play();
     }
 }
 
