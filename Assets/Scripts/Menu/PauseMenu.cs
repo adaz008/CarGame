@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject esc;
 
     [SerializeField] private ControlsMenuNavigator MenuNavigator;
+
+    public static event Action OnBackPressed;
 
     private bool isEnabled = true;
 
@@ -79,6 +82,8 @@ public class PauseMenu : MonoBehaviour
             RaceBack.onClick.Invoke();
         else if (SettingsMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
             SettingsBack.onClick.Invoke();
+
+        OnBackPressed?.Invoke();
     }
 
     public void Resume()
@@ -94,6 +99,8 @@ public class PauseMenu : MonoBehaviour
         RearViewMirror.SetActive(UserSettings.Instance.RearViewMirror);
 
         Time.timeScale = 1f;
+
+        OnBackPressed?.Invoke();
 
         GameIsPaused = false;
     }

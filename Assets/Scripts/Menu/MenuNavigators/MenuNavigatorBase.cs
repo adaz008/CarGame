@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,6 +17,8 @@ public class MenuNavigatorBase : MonoBehaviour
     [SerializeField] protected Color activeInputFieldColor;
     [SerializeField] protected Color normalBGColor;
     [SerializeField] protected Color hoverBGColor;
+
+    public static event Action Hover;
 
 
     void OnDisable()
@@ -54,6 +57,7 @@ public class MenuNavigatorBase : MonoBehaviour
         int counter = 0;
         if (this.isActiveAndEnabled)
         {
+            Hover?.Invoke();
             foreach (GameObject item in items)
             {
                 if (item != selectedItem)
