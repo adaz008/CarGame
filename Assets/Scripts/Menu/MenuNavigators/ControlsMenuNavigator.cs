@@ -6,12 +6,8 @@ using UnityEngine;
 public class ControlsMenuNavigator : MenuNavigatorBase
 {
     public static event Action OnControlsEditing;
-    protected bool isEditing = false;
+    public static bool isEditing = false;
 
-    public bool getIsEditing()
-    {
-        return isEditing;
-    }
     protected override void Update()
     {
         if (!isEditing)

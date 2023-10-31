@@ -31,8 +31,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject enter;
     [SerializeField] private GameObject esc;
 
-    [SerializeField] private ControlsMenuNavigator MenuNavigator;
-
     public static event Action OnBackPressed;
 
     private bool isEnabled = true;
@@ -73,15 +71,15 @@ public class PauseMenu : MonoBehaviour
 
     private void MoveBack()
     {
-        if (AudioMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
+        if (AudioMenuUi.activeInHierarchy && !ControlsMenuNavigator.isEditing)
             AudioBack.onClick.Invoke();
-        else if (PlayerMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
+        else if (PlayerMenuUi.activeInHierarchy && !ControlsMenuNavigator.isEditing)
             PlayerBack.onClick.Invoke();
-        else if (ControlsMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
+        else if (ControlsMenuUi.activeInHierarchy && !ControlsMenuNavigator.isEditing)
             ControlsBack.onClick.Invoke();
-        else if (RaceMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
+        else if (RaceMenuUi.activeInHierarchy && !ControlsMenuNavigator.isEditing)
             RaceBack.onClick.Invoke();
-        else if (SettingsMenuUi.activeInHierarchy && !MenuNavigator.getIsEditing())
+        else if (SettingsMenuUi.activeInHierarchy && !ControlsMenuNavigator.isEditing)
             SettingsBack.onClick.Invoke();
 
         OnBackPressed?.Invoke();
