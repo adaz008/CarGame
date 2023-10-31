@@ -1,3 +1,4 @@
+using Assets.Scripts.CarParts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,13 +27,11 @@ public class CarUIManager : MonoBehaviour
     [SerializeField] private Color brakingColor;
     [SerializeField] private float brakeColorIntensity;
 
-    private Transmission transmission;
     private Motor motor;
 
     private void Start()
     {
         motor = gameObject.GetComponent<Motor>();
-        transmission = gameObject.GetComponent<Transmission>();
     }
 
     private void Update()
@@ -53,9 +52,9 @@ public class CarUIManager : MonoBehaviour
 
     public void UpdateUI(int KPH)
     {
-        GearState gearState = transmission.GearState;
-        int currentGear = transmission.CurrentGear;
-        float RPM = motor.GetRPM();
+        GearState gearState = motor.gearState;
+        int currentGear = motor.currentGear;
+        float RPM = motor.RPM;
         float redLineEnd = motor.RedLineEnd;
 
         rpmNeedle.rotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(minRPMNeedleRotation, maxRPMNeedleRotation, RPM / redLineEnd));
@@ -84,7 +83,7 @@ public class CarUIManager : MonoBehaviour
 
     public void CheckRedLine()
     {
-        float RPM = motor.GetRPM();
+        float RPM = motor.RPM;
         float redLineStart = motor.RedLineStart;
         if (RPM > redLineStart)
         {

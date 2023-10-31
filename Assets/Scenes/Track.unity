@@ -60999,7 +60999,6 @@ GameObject:
   - component: {fileID: 772221006371042625}
   - component: {fileID: 772221006371042624}
   - component: {fileID: 772221006371042631}
-  - component: {fileID: 772221006371042630}
   - component: {fileID: 772221006371042629}
   - component: {fileID: 772221006371042627}
   m_Layer: 0
@@ -61220,29 +61219,6 @@ MonoBehaviour:
     FLWheel: {fileID: 4829315030108840424}
     RRWheel: {fileID: 4829315029893288613}
     RLWheel: {fileID: 4829315029101101656}
---- !u!114 &772221006371042630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772221006371042617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b0a8f225025e8844b966c0317c7b3ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clutch: 0
-  currentGear: 0
-  gearRatios:
-  - 2.7
-  - 1.8
-  - 1.4
-  - 1.1
-  - 0.9
-  - 0.65
-  differentialRatio: 4.2
-  changeGearTime: 0.3
 --- !u!114 &772221006371042631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61330,6 +61306,15 @@ MonoBehaviour:
   redLineEnd: 8250
   increaseGearRPM: 7400
   decreaseGearRPM: 3200
+  gearRatios:
+  - 2.7
+  - 1.8
+  - 1.4
+  - 1.1
+  - 0.9
+  - 0.6
+  differentialRatio: 4.2
+  changeGearTime: 0.3
 --- !u!33 &774384546488944018
 MeshFilter:
   m_ObjectHideFlags: 0

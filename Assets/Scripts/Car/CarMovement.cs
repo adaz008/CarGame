@@ -1,3 +1,4 @@
+using Assets.Scripts.CarParts;
 using UnityEngine;
 
 
@@ -12,18 +13,15 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private AnimationCurve hpToRPMCurve;
 
     private float currentTorque;
-    private int isEngineRunning;
+    //private int isEngineRunning;
 
     private bool handBrake = false;
     private bool lookBack = false;
     private bool isRaceStarting = false;
 
-    private bool isChanged = false;
-
     private WheelUpdater wheelUpdater;
     private CarUIManager carUIManager;
     private Motor motor;
-    private Transmission transmission;
     private InputManager inputManager;
     private RaceManager raceManager;
     private void Start()
@@ -33,10 +31,9 @@ public class CarMovement : MonoBehaviour
         wheelUpdater = gameObject.GetComponent<WheelUpdater>();
         carUIManager = gameObject.GetComponent<CarUIManager>();
         motor = gameObject.GetComponent<Motor>();
-        transmission = gameObject.GetComponent<Transmission>();
 
-        inputManager = new InputManager(motor, transmission, carMovement);
-        raceManager = new RaceManager(motor, transmission, playerRB);
+        inputManager = new InputManager(motor, carMovement);
+        raceManager = new RaceManager(motor, playerRB);
     }
 
     private void FixedUpdate()
@@ -60,11 +57,11 @@ public class CarMovement : MonoBehaviour
     {
         inputManager.getInput(ref gasInput, ref steeringInput, ref playerRB, ref handBrake, ref lookBack);
 
-        if (Mathf.Abs(gasInput) > 0 && isEngineRunning == 0)
+        if (Mathf.Abs(gasInput) > 0 && motor.isEngineRunning == 0)
         {
-            isEngineRunning = 1;
+            motor.isEngineRunning = 1;
             StartCoroutine(GetComponent<EngineAudio>().StartEngine());
-            transmission.SetGearState(GearState.Running);
+            motor.gearState = GearState.Running;
         }
         float movingDirection = Vector3.Dot(transform.forward, playerRB.velocity);
 
@@ -93,7 +90,7 @@ public class CarMovement : MonoBehaviour
 
     public void StartRacePos(Vector3 position)
     {
-        raceManager.StartRacePos(position, playerRB, isEngineRunning);
+        raceManager.StartRacePos(position, playerRB, motor.isEngineRunning);
         SetRaceStarting(true);
     }
 
@@ -103,11 +100,8 @@ public class CarMovement : MonoBehaviour
     }
 
     public float GasInput => gasInput;
-    public int IsEngineRunning => isEngineRunning;
-
-    public bool IsChanged => isChanged;
+    //public int IsEngineRunning => isEngineRunning;
 
     public bool LookBack => lookBack;
-    public void SetIsEngineRunning(int value) { isEngineRunning = value; }
-    public void SetIsChanged(bool value) { isChanged = value; }
+    //public void SetIsEngineRunning(int value) { isEngineRunning = value; }
 }
