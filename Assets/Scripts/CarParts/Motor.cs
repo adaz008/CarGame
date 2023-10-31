@@ -14,6 +14,12 @@ namespace Assets.Scripts.CarParts
 
     public class Motor : MonoBehaviour
     {
+        private const float MAGNITUDE_TO_MPH = 2.25f;
+        private const float TORQUE_CONVERSION_FACTOR = 5252f;
+        private const float IDLE_RPM = 800f;
+        private const float TIRE_DIAMETER = 25f;
+
+
         [Header("Motor settings")]
         [SerializeField] private float motorPower;
         [SerializeField] private float brakePower;
@@ -29,10 +35,7 @@ namespace Assets.Scripts.CarParts
         [SerializeField] private float changeGearTime;
 
 
-        private readonly float idleRPM = 800f;
-        private readonly float tireDiameter = 25f;
-
-        #region Getters
+        #region Properties
         public float RPM { get; set; }
         public GearState gearState { get; set; }
         public int currentGear { get; set; }
@@ -47,7 +50,7 @@ namespace Assets.Scripts.CarParts
 
         public void setRPMToIdle()
         {
-            RPM = idleRPM;
+            RPM = IDLE_RPM;
         }
 
         public float CalculateTorque(Rigidbody playerRB, float gasInput)
@@ -64,20 +67,15 @@ namespace Assets.Scripts.CarParts
                 {
                     //Random azért kell, hogy tiltásnál ugráljon a mutató picit
                     //Illetve nézzük, hogy az alapjárat vagy az adott fordulat a nagyobb és afelé közeledik a mutató
-                    RPM = Mathf.Lerp(RPM, Mathf.Max(idleRPM, redLineEnd * gasInput) + Random.Range(-50, 50), Time.deltaTime);
+                    RPM = Mathf.Lerp(RPM, Mathf.Max(IDLE_RPM, redLineEnd * gasInput) + Random.Range(-50, 50), Time.deltaTime);
                 }
                 else
                 {
                     //Motor fordulatszáma
-                    //playerRB.velocity.magnitude * 2.25f = mérföld/órában a sebesség
-                    //gearRatios[currentGear] =  adott fokozat áttétele
-                    //336f konstans
-                    //tireDiameter = kerek magassag
-
-                    RPM = (playerRB.velocity.magnitude * 2.25f * gearRatios[currentGear] * 336f * differentialRatio) / tireDiameter;
+                    RPM = (playerRB.velocity.magnitude * MAGNITUDE_TO_MPH * gearRatios[currentGear] * 336f * differentialRatio) / TIRE_DIAMETER;
                     RPM = RPM > redLineEnd ? (redLineEnd + Random.Range(-100, 100)) : RPM;
                     //Nyomaték newtonméterben
-                    torque = (hpToRPMCurve.Evaluate(RPM / redLineEnd) * motorPower / RPM) * gearRatios[currentGear] * differentialRatio * 5252f * clutch;
+                    torque = (hpToRPMCurve.Evaluate(RPM / redLineEnd) * motorPower / RPM) * gearRatios[currentGear] * differentialRatio * TORQUE_CONVERSION_FACTOR * clutch;
                     if (RPM > redLineEnd)
                         torque = 0f;
                 }
@@ -88,15 +86,15 @@ namespace Assets.Scripts.CarParts
         public void CheckForGearChange(float gasInput)
         {
             //Ha megáll, üresbe kerül
-            if (RPM < idleRPM + 200 && gasInput == 0 && currentGear == 0)
+            if (RPM < IDLE_RPM + 200 && gasInput == 0 && currentGear == 0)
                 gearState = GearState.Neutral;
 
             //Ha előre menetből egyből tolatni kezd
-            if (RPM < idleRPM + 200 && gasInput < 0 && currentGear == 0)
+            if (RPM < IDLE_RPM + 200 && gasInput < 0 && currentGear == 0)
                 gearState = GearState.Reverse;
 
             //Ha tolatásból egyből előre megy
-            if (RPM < idleRPM + 200 && gasInput > 0 && currentGear == 0)
+            if (RPM < IDLE_RPM + 200 && gasInput > 0 && currentGear == 0)
                 gearState = GearState.Running;
 
 

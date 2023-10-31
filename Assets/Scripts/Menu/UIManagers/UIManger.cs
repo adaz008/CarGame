@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIManger : MonoBehaviour
 {
     public static event Action OnOpenUI;
-    [SerializeField] private RaceMenu menu;
+    [SerializeField] protected RaceMenu menu;
     public virtual void OpenUI(GameObject newUI)
     {
         InvokeUISound();

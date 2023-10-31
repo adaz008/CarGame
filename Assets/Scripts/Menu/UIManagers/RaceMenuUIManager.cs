@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class RaceMenuUIManager : UIManger
 {
-    private RaceMenu menu;
-
-    private void Start()
-    {
-        menu = GetComponent<RaceMenu>();
-    }
 
     public void StartRace(GameObject RaceTrack)
     {
