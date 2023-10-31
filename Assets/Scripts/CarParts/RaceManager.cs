@@ -1,10 +1,5 @@
 using UnityEngine;
 
-//public enum CheckpointMiss
-//{
-//    Missed,
-//    Reset
-//};
 
 public class RaceManager
 {
@@ -30,17 +25,6 @@ public class RaceManager
         PreCheckpointZoneTrigger.PreCheckpointTrigger += MissedCheckpointMissed;
         CountDownController.MissedCheckpointReset += MissedCheckpointReset;
     }
-    //private void OnEnable()
-    //{
-    //    PreCheckpointZoneTrigger.PreCheckpointTrigger += MissedCheckpointMissed;
-    //    CountDownController.MissedCheckpointReset += MissedCheckpointReset;
-    //}
-
-    //private void OnDisable()
-    //{
-    //    PreCheckpointZoneTrigger.PreCheckpointTrigger -= MissedCheckpointMissed;
-    //    CountDownController.MissedCheckpointReset -= MissedCheckpointReset;
-    //}
 
     public void StartRacePos(Vector3 position, Rigidbody playerRB, int isEngineRunning)
     {

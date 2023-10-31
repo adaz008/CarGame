@@ -8,12 +8,6 @@ public class WheelUpdater : MonoBehaviour
     [SerializeField] private WheelTransforms transforms;
     private float radius = 5;
     private const float baseRadius = 5f;
-    private Motor motor;
-
-    private void Start()
-    {
-        motor = gameObject.GetComponent<Motor>();
-    }
 
     public void UpdateRadius(float newValue)
     {
@@ -26,9 +20,8 @@ public class WheelUpdater : MonoBehaviour
         colliders.RLWheel.motorTorque = currentTorque * gasInput / 2;
     }
 
-    public void handleBrake(bool handBrake, float brakeInput)
+    public void handleBrake(bool handBrake, float brakeInput, float brakePower)
     {
-        float brakePower = motor.BrakePower;
         if (handBrake)
         {
             colliders.RRWheel.brakeTorque = brakePower;

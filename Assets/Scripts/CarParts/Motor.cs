@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Motor : MonoBehaviour 
+public class Motor : MonoBehaviour
 {
     [Header("Motor settings")]
     [SerializeField] private float motorPower;

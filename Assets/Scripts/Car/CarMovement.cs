@@ -87,7 +87,7 @@ public class CarMovement : MonoBehaviour
 
     private void ApplyBreaking()
     {
-        wheelUpdater.handleBrake(handBrake, brakeInput);
+        wheelUpdater.handleBrake(handBrake, brakeInput, motor.BrakePower);
         carUIManager.BrakeLampChange(handBrake, brakeInput);
     }
 
