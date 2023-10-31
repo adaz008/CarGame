@@ -1,3 +1,4 @@
+using Assets.Scripts.CarParts;
 using UnityEngine;
 
 
@@ -10,16 +11,15 @@ public class RaceManager
     Vector3 resetVelocity = Vector3.zero;
 
     GearState resetGearState = GearState.Neutral;
-    int resetGearIndex = 0;
+    int resetCurrentGear = 0;
     float resetRPM = 0f;
 
-    private Transmission _transmission;
+    //private Transmission _transmission;
     private Motor _motor;
 
-    public RaceManager(Motor motor, Transmission transmission, Rigidbody player)
+    public RaceManager(Motor motor,Rigidbody player)
     {
         _motor = motor;
-        _transmission = transmission;
         _player = player;
 
         PreCheckpointZoneTrigger.PreCheckpointTrigger += MissedCheckpointMissed;
@@ -39,7 +39,7 @@ public class RaceManager
 
             playerRB.transform.rotation = Quaternion.Euler(0, 270, 0);
 
-            _transmission.SetGearState(GearState.Running);
+            _motor.gearState = GearState.Running;
             _motor.setRPMToIdle();
             playerRB.velocity = Vector3.zero;
         }
@@ -51,9 +51,9 @@ public class RaceManager
         resetPos = _player.position;
         resetRot = _player.rotation;
         resetVelocity = _player.velocity;
-        resetGearState = _transmission.GearState;
-        resetGearIndex = _transmission.CurrentGear;
-        resetRPM = _motor.GetRPM();
+        resetGearState = _motor.gearState;
+        resetCurrentGear = _motor.currentGear;
+        resetRPM = _motor.RPM;
     }
 
     public void MissedCheckpointReset()
@@ -61,8 +61,8 @@ public class RaceManager
         _player.position = resetPos;
         _player.rotation = resetRot;
         _player.velocity = resetVelocity;
-        _transmission.SetCurrentGear(resetGearIndex);
-        _transmission.SetGearState(resetGearState);
-        _motor.SetRPM(resetRPM);
+        _motor.currentGear = resetCurrentGear;
+        _motor.gearState = resetGearState;
+        _motor.RPM = resetRPM;
     }
 }

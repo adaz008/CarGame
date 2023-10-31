@@ -1,107 +1,175 @@
+﻿using System.Collections;
 using UnityEngine;
 
-public class Motor : MonoBehaviour
+namespace Assets.Scripts.CarParts
 {
-    [Header("Motor settings")]
-    [SerializeField] private float motorPower;
-    [SerializeField] private float brakePower;
-    [SerializeField] private AnimationCurve hpToRPMCurve;
-    private float RPM;
-    [SerializeField] private float redLineStart;
-    [SerializeField] private float redLineEnd;
-    [SerializeField] private float increaseGearRPM;
-    [SerializeField] private float decreaseGearRPM;
-    private readonly float idleRPM = 800f;
-    private readonly float tireDiameter = 25f;
-
-    private Transmission transmission;
-    private CarMovement carMovement;
-
-    public float BrakePower => brakePower;
-
-    public float RedLineStart => redLineStart;
-    public float RedLineEnd => redLineEnd;
-    public float IncreaseGearRPM => increaseGearRPM;
-    public float DecreaseGearRPM => decreaseGearRPM;
-    public float GetRPM() { return RPM; }
-    public void SetRPM(float value) { RPM = value; }
-
-    private void Start()
+    public enum GearState
     {
-        carMovement = gameObject.GetComponent<CarMovement>();
-        transmission = gameObject.GetComponent<Transmission>();
-    }
+        Neutral,
+        Running,
+        CheckingChange,
+        Changing,
+        Reverse
+    };
 
-    public float CalculateTorque(Rigidbody playerRB, float gasInput)
+    public class Motor : MonoBehaviour
     {
-        float torque = 0;
-        int isEngineRunning = carMovement.IsEngineRunning;
-        float clutch = transmission.Clutch;
-        float[] gearRatios = transmission.GearRatios;
-        float differentialRatio = transmission.DifferentialRatio;
-        int currentGear = transmission.CurrentGear;
+        [Header("Motor settings")]
+        [SerializeField] private float motorPower;
+        [SerializeField] private float brakePower;
+        [SerializeField] private AnimationCurve hpToRPMCurve;
+        [SerializeField] private float redLineStart;
+        [SerializeField] private float redLineEnd;
+        [SerializeField] private float increaseGearRPM;
+        [SerializeField] private float decreaseGearRPM;
 
-        CheckForGearChange(gasInput);
+        [Header("Transmission settings")]
+        [SerializeField] private float[] gearRatios;
+        [SerializeField] private float differentialRatio;
+        [SerializeField] private float changeGearTime;
 
-        //Ha j�r a motor
-        if (isEngineRunning > 1)
+
+        private readonly float idleRPM = 800f;
+        private readonly float tireDiameter = 25f;
+
+        #region Getters
+        public float RPM { get; set; }
+        public GearState gearState { get; set; }
+        public int currentGear { get; set; }
+        public float clutch { get; set; }
+        public bool isChanged { get; set; } = false;
+        public int isEngineRunning { get; set; } = 0;
+        public float BrakePower => brakePower;
+        public float RedLineEnd => redLineEnd;
+        public float RedLineStart => redLineStart;
+        public float[] GearRatios => gearRatios;
+        #endregion
+
+        public void setRPMToIdle()
         {
-            //Ha a kuplung be van nyomva
-            if (clutch == 0f)
+            RPM = idleRPM;
+        }
+
+        public float CalculateTorque(Rigidbody playerRB, float gasInput)
+        {
+            float torque = 0;
+
+            CheckForGearChange(gasInput);
+
+            //Ha jár a motor
+            if (isEngineRunning > 1)
             {
-                //Random az�rt kell, hogy tilt�sn�l ugr�ljon a mutat� picit
-                //Illetve n�zz�k, hogy az alapj�rat vagy az adott fordulat a nagyobb �s afel� k�zeledik a mutat�
-                RPM = Mathf.Lerp(RPM, Mathf.Max(idleRPM, redLineEnd * gasInput) + Random.Range(-50, 50), Time.deltaTime);
+                //Ha a kuplung be van nyomva
+                if (clutch == 0f)
+                {
+                    //Random azért kell, hogy tiltásnál ugráljon a mutató picit
+                    //Illetve nézzük, hogy az alapjárat vagy az adott fordulat a nagyobb és afelé közeledik a mutató
+                    RPM = Mathf.Lerp(RPM, Mathf.Max(idleRPM, redLineEnd * gasInput) + Random.Range(-50, 50), Time.deltaTime);
+                }
+                else
+                {
+                    //Motor fordulatszáma
+                    //playerRB.velocity.magnitude * 2.25f = mérföld/órában a sebesség
+                    //gearRatios[currentGear] =  adott fokozat áttétele
+                    //336f konstans
+                    //tireDiameter = kerek magassag
+
+                    RPM = (playerRB.velocity.magnitude * 2.25f * gearRatios[currentGear] * 336f * differentialRatio) / tireDiameter;
+                    RPM = RPM > redLineEnd ? (redLineEnd + Random.Range(-100, 100)) : RPM;
+                    //Nyomaték newtonméterben
+                    torque = (hpToRPMCurve.Evaluate(RPM / redLineEnd) * motorPower / RPM) * gearRatios[currentGear] * differentialRatio * 5252f * clutch;
+                    if (RPM > redLineEnd)
+                        torque = 0f;
+                }
+            }
+            return torque;
+        }
+
+        public void CheckForGearChange(float gasInput)
+        {
+            //Ha megáll, üresbe kerül
+            if (RPM < idleRPM + 200 && gasInput == 0 && currentGear == 0)
+                gearState = GearState.Neutral;
+
+            //Ha előre menetből egyből tolatni kezd
+            if (RPM < idleRPM + 200 && gasInput < 0 && currentGear == 0)
+                gearState = GearState.Reverse;
+
+            //Ha tolatásból egyből előre megy
+            if (RPM < idleRPM + 200 && gasInput > 0 && currentGear == 0)
+                gearState = GearState.Running;
+
+
+            //Ha jár a motor és a kuplung ki van nyomva
+            if (gearState == GearState.Running && clutch> 0 && UserSettings.Instance.Transmission == "Auto")
+            {
+                if (RPM > increaseGearRPM)
+                    StartGearChangeCoroutine(1);
+                else if (RPM < decreaseGearRPM)
+                    StartGearChangeCoroutine(-1);
+            }
+        }
+
+        public void StartGearChangeCoroutine(int direction)
+        {
+            StartCoroutine(ChangeGear(direction));
+        }
+
+        IEnumerator ChangeGear(int gearChange)
+        {
+            if (UserSettings.Instance.Transmission == "Auto")
+            {
+                //Ellenőrizzük, hogy történik-e váltás
+                gearState = GearState.CheckingChange;
+                if (currentGear + gearChange >= 0)
+                {
+                    if (gearChange > 0)
+                    {
+                        //Növelni szeretnénk a fokozatot
+                        //Várunk egy picit hogy tényleg kell-e váltani
+                        if (currentGear == 1)
+                            yield return new WaitForSeconds(0.4f);
+                        else
+                            yield return new WaitForSeconds(0.05f);
+                        //Ha a fordulatszám kisebb mint a felfele váltás fordulatszáma vagy elértük a maximális sebességi fokozatot akkor nem váltunk
+                        if (RPM < increaseGearRPM || currentGear >= gearRatios.Length - 1)
+                        {
+                            gearState = GearState.Running;
+                            yield break;
+                        }
+                    }
+                    else
+                    {
+                        //Csökkenteni szeretnénk a fokozatot
+                        //Várunk egy picit hogy tényleg kell-e váltani
+                        yield return new WaitForSeconds(0.1f);
+
+                        //Ha a fordulatszám nagyobb mint a lefele váltás fordulatszáma vagy nem tudunk már lefele váltani(üresben vagyunk)
+                        if (RPM > decreaseGearRPM || currentGear <= 0)
+                        {
+                            gearState = GearState.Running;
+                            yield break;
+                        }
+                    }
+                    //Váltás történik
+                    gearState = GearState.Changing;
+                    yield return new WaitForSeconds(changeGearTime);
+                    //Váltottunk
+                    currentGear += gearChange;
+                }
+                if (gearState != GearState.Neutral)
+                    gearState = GearState.Running;
             }
             else
             {
-                //Motor fordulatsz�ma
-                //playerRB.velocity.magnitude * 2.25f = m�rf�ld/�r�ban a sebess�g
-                //gearRatios[currentGear] =  adott fokozat �tt�tele
-                //336f konstans
-                //tireDiameter = kerek magassag
-
-                RPM = (playerRB.velocity.magnitude * 2.25f * gearRatios[currentGear] * 336f * differentialRatio) / tireDiameter;
-                RPM = RPM > redLineEnd ? (redLineEnd + Random.Range(-100, 100)) : RPM;
-                //Nyomat�k newtonm�terben
-                torque = (hpToRPMCurve.Evaluate(RPM / redLineEnd) * motorPower / RPM) * gearRatios[currentGear] * differentialRatio * 5252f * clutch;
-                if (RPM > redLineEnd)
-                    torque = 0f;
+                gearState = GearState.Changing;
+                yield return new WaitForSeconds(changeGearTime);
+                //Váltottunk
+                currentGear += gearChange;
+                gearState = GearState.Running;
+                isChanged = !isChanged;
             }
         }
-        return torque;
-    }
 
-    public void CheckForGearChange(float gasInput)
-    {
-        int currentGear = transmission.CurrentGear;
-        GearState gearState = transmission.GearState;
-        //Ha meg�ll, �resbe ker�l
-        if (RPM < idleRPM + 200 && gasInput == 0 && currentGear == 0)
-            gearState = GearState.Neutral;
-
-        //Ha el�re menetb�l egyb�l tolatni kezd
-        if (RPM < idleRPM + 200 && gasInput < 0 && currentGear == 0)
-            gearState = GearState.Reverse;
-
-        //Ha tolat�sb�l egyb�l el�re megy
-        if (RPM < idleRPM + 200 && gasInput > 0 && currentGear == 0)
-            gearState = GearState.Running;
-
-        transmission.SetGearState(gearState);
-
-        //Ha j�r a motor �s a kuplung ki van nyomva
-        if (gearState == GearState.Running && transmission.Clutch > 0 && UserSettings.Instance.Transmission == "Auto")
-        {
-            if (RPM > increaseGearRPM)
-                transmission.StartGearChangeCoroutine(1);
-            else if (RPM < decreaseGearRPM)
-                transmission.StartGearChangeCoroutine(-1);
-        }
-    }
-
-    public void setRPMToIdle()
-    {
-        RPM = idleRPM;
     }
 }

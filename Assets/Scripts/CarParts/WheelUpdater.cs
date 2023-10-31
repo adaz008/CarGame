@@ -6,7 +6,7 @@ public class WheelUpdater : MonoBehaviour
     [Header("Wheels")]
     [SerializeField] private WheelColliders colliders;
     [SerializeField] private WheelTransforms transforms;
-    private float radius = 5;
+    private float radius = 5f;
     private const float baseRadius = 5f;
 
     public void UpdateRadius(float newValue)

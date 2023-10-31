@@ -1,4 +1,5 @@
 using System.Collections;
+using Assets.Scripts.CarParts;
 using UnityEngine;
 
 public class EngineAudio : MonoBehaviour
@@ -30,7 +31,7 @@ public class EngineAudio : MonoBehaviour
     {
         if (carMovement)
         {
-            RPM = (float)motor.GetRPM();
+            RPM = (float)motor.RPM;
             gasInput = (float)carMovement.GasInput;
         }
 
@@ -106,7 +107,7 @@ public class EngineAudio : MonoBehaviour
         Audios.Idle.volume = 1;
         isEngineRunning = true;
         yield return new WaitForSeconds(0.4f);
-        carMovement.SetIsEngineRunning(2);
+        motor.isEngineRunning = 2;
     }
 }
 
