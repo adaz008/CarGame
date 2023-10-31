@@ -26,8 +26,14 @@ public class CarUIManager : MonoBehaviour
     [SerializeField] private Color brakingColor;
     [SerializeField] private float brakeColorIntensity;
 
-    [SerializeField] Transmission transmission;
-    [SerializeField] Motor motor;
+    private Transmission transmission;
+    private Motor motor;
+
+    private void Start()
+    {
+        motor = gameObject.GetComponent<Motor>();
+        transmission = gameObject.GetComponent<Transmission>();
+    }
 
     private void Update()
     {

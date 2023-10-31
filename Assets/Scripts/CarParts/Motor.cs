@@ -1,22 +1,21 @@
 using UnityEngine;
 
-public class Motor : MonoBehaviour
+public class Motor : MonoBehaviour 
 {
     [Header("Motor settings")]
     [SerializeField] private float motorPower;
     [SerializeField] private float brakePower;
     [SerializeField] private AnimationCurve hpToRPMCurve;
-    [SerializeField] private float RPM;
+    private float RPM;
     [SerializeField] private float redLineStart;
     [SerializeField] private float redLineEnd;
     [SerializeField] private float increaseGearRPM;
     [SerializeField] private float decreaseGearRPM;
-    [SerializeField] private float idleRPM;
-    [SerializeField] private float tireDiameter;
+    private readonly float idleRPM = 800f;
+    private readonly float tireDiameter = 25f;
 
-    [SerializeField] Transmission transmission;
-
-    [SerializeField] CarMovement carMovement;
+    private Transmission transmission;
+    private CarMovement carMovement;
 
     public float BrakePower => brakePower;
 
@@ -26,6 +25,12 @@ public class Motor : MonoBehaviour
     public float DecreaseGearRPM => decreaseGearRPM;
     public float GetRPM() { return RPM; }
     public void SetRPM(float value) { RPM = value; }
+
+    private void Start()
+    {
+        carMovement = gameObject.GetComponent<CarMovement>();
+        transmission = gameObject.GetComponent<Transmission>();
+    }
 
     public float CalculateTorque(Rigidbody playerRB, float gasInput)
     {

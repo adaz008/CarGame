@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class CountDownController : MonoBehaviour
 
     //private bool isMissedCounterRunning = false;
     private Coroutine missedCheckpointCoroutine;
+    public static event Action MissedCheckpointReset;
 
     void Awake() {
         GameObject UIparent = GameObject.FindGameObjectWithTag("UI");
@@ -23,6 +25,14 @@ public class CountDownController : MonoBehaviour
         countDownText = Instantiate(countDownPrefab, UIparent.transform).GetComponent<TextMeshProUGUI>();
 
         timerController = GameObject.FindWithTag("Timer").GetComponent<TimerController>();
+    }
+    private void OnEnable()
+    {
+        CheckpointMissDetector.MissedCheckpointTrigger += StartMissedCounter;
+    }
+    private void OnDisable()
+    {
+        CheckpointMissDetector.MissedCheckpointTrigger -= StartMissedCounter;
     }
 
     private void OnDestroy()
@@ -96,7 +106,7 @@ public class CountDownController : MonoBehaviour
     {
         GameObject UIparent = GameObject.FindGameObjectWithTag("UI");
 
-        CarMovement player = GameObject.FindGameObjectWithTag("Car").GetComponent<CarMovement>();
+        //CarMovement player = GameObject.FindGameObjectWithTag("Car").GetComponent<CarMovement>();
 
         missedCheckpointCountDownText = Instantiate(missedCheckpointCountPrefab, UIparent.transform).GetComponent<TextMeshProUGUI>();
         missedCheckpointText = Instantiate(missedCheckpointTextPrefab, UIparent.transform).GetComponent<TextMeshProUGUI>();
@@ -110,7 +120,8 @@ public class CountDownController : MonoBehaviour
             countDownTime--;
         }
 
-        player.MissedCheckpointReset(CheckpointMiss.Reset);
+        //player.MissedCheckpointReset(CheckpointMiss.Reset);
+        MissedCheckpointReset?.Invoke();
 
         TrackCheckPoints track = GameObject.FindGameObjectWithTag("Track").GetComponent<TrackCheckPoints>();
 

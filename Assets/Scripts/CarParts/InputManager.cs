@@ -1,17 +1,24 @@
 using Assets.Scripts.Menu.MenuSettings;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager
 {
-    [SerializeField] Transmission transmission;
-    [SerializeField] Motor motor;
-    [SerializeField] CarMovement carmovement;
+    private Transmission _transmission;
+    private Motor _motor;
+    private CarMovement _carmovement;
+
+    public InputManager(Motor motor, Transmission transmission, CarMovement carmovement)
+    {
+        _motor = motor;
+        _transmission = transmission;
+        _carmovement = carmovement;
+    }
 
     public void getInput(ref float gasInput, ref float steeringInput, ref Rigidbody playerRB, ref bool handBrake, ref bool lookBack)
     {
-        GearState gearState = transmission.GearState;
-        int currentGear = transmission.CurrentGear;
-        float[] gearRatios = transmission.GearRatios;
+        GearState gearState = _transmission.GearState;
+        int currentGear = _transmission.CurrentGear;
+        float[] gearRatios = _transmission.GearRatios;
 
         if (Input.GetKeyDown(UserSettings.Instance.Reset_Keyboard))
             playerRB.rotation = new Quaternion(0f, 0f, 0f, 1f);
@@ -19,24 +26,24 @@ public class InputManager : MonoBehaviour
         if (Input.GetKey(UserSettings.Instance.ShiftUp_Keyboard)
             && gearState == GearState.Running
             && UserSettings.Instance.Transmission == "Manual"
-            && !carmovement.IsChanged)
+            && !_carmovement.IsChanged)
         {
             if (currentGear != gearRatios.Length - 1)
             {
-                carmovement.SetIsChanged(!carmovement.IsChanged);
-                transmission.StartGearChangeCoroutine(1);
+                _carmovement.SetIsChanged(!_carmovement.IsChanged);
+                _transmission.StartGearChangeCoroutine(1);
             }
         }
 
         if (Input.GetKey(UserSettings.Instance.ShiftDown_Keyboard)
             && gearState == GearState.Running
             && UserSettings.Instance.Transmission == "Manual"
-            && !carmovement.IsChanged)
+            && !_carmovement.IsChanged)
         {
             if (currentGear > 0)
             {
-                carmovement.SetIsChanged(!carmovement.IsChanged);
-                transmission.StartGearChangeCoroutine(-1);
+                _carmovement.SetIsChanged(!_carmovement.IsChanged);
+                _transmission.StartGearChangeCoroutine(-1);
             }
         }
 
@@ -73,7 +80,7 @@ public class InputManager : MonoBehaviour
             playerRB.velocity.magnitude != 0f)
             ||
             (UserSettings.Instance.Transmission == "Manual") &&
-            motor.GetRPM() > motor.RedLineEnd)
+            _motor.GetRPM() > _motor.RedLineEnd)
         {
             float speed = playerRB.velocity.magnitude * 3.6f;
             float newSpeed = playerRB.velocity.magnitude * 3.6f - 0.295f;
@@ -96,7 +103,7 @@ public class InputManager : MonoBehaviour
         {
             if (gearState == GearState.Neutral)
             {
-                transmission.SetClutch(0);
+                _transmission.SetClutch(0);
                 if (gasInput > 0)
                     gearState = GearState.Running;
                 else if (gasInput < 0)
@@ -104,10 +111,10 @@ public class InputManager : MonoBehaviour
             }
             else
                 //clutch = Input.GetKey(KeyCode.AltGr) ? 0 : Mathf.Lerp(clutch, 1, Time.deltaTime);
-                transmission.SetClutch(Mathf.Lerp(transmission.Clutch, 1, Time.deltaTime));
+                _transmission.SetClutch(Mathf.Lerp(_transmission.Clutch, 1, Time.deltaTime));
         }
         else
-            transmission.SetClutch(0);
+            _transmission.SetClutch(0);
 
 
     }

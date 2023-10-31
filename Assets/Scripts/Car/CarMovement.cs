@@ -20,15 +20,23 @@ public class CarMovement : MonoBehaviour
 
     private bool isChanged = false;
 
-    [SerializeField] WheelUpdater wheelUpdater;
-    [SerializeField] CarUIManager carUIManager;
-    [SerializeField] Motor motor;
-    [SerializeField] Transmission transmission;
-    [SerializeField] InputManager inputManager;
-    [SerializeField] RaceManager raceManager;
+    private WheelUpdater wheelUpdater;
+    private CarUIManager carUIManager;
+    private Motor motor;
+    private Transmission transmission;
+    private InputManager inputManager;
+    private RaceManager raceManager;
     private void Start()
     {
+        CarMovement carMovement = GetComponent<CarMovement>();
         playerRB = gameObject.GetComponent<Rigidbody>();
+        wheelUpdater = gameObject.GetComponent<WheelUpdater>();
+        carUIManager = gameObject.GetComponent<CarUIManager>();
+        motor = gameObject.GetComponent<Motor>();
+        transmission = gameObject.GetComponent<Transmission>();
+
+        inputManager = new InputManager(motor, transmission, carMovement);
+        raceManager = new RaceManager(motor, transmission, playerRB);
     }
 
     private void FixedUpdate()
@@ -87,11 +95,6 @@ public class CarMovement : MonoBehaviour
     {
         raceManager.StartRacePos(position, playerRB, isEngineRunning);
         SetRaceStarting(true);
-    }
-
-    public void MissedCheckpointReset(CheckpointMiss state)
-    {
-        raceManager.MissedCheckpointReset(state, playerRB);
     }
 
     public void SetRaceStarting(bool value)

@@ -20,8 +20,14 @@ public class Transmission : MonoBehaviour
     [SerializeField] private float differentialRatio;
 
     [SerializeField] private float changeGearTime;
-    [SerializeField] Motor motor;
-    [SerializeField] CarMovement carmovement;
+    private Motor motor;
+    private CarMovement carmovement;
+
+    private void Start()
+    {
+        carmovement = GetComponent<CarMovement>();
+        motor = GetComponent<Motor>();
+    }
 
     public GearState GearState => gearState;
     public void SetGearState(GearState value) { gearState = value; }

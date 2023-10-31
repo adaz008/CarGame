@@ -25908,7 +25908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe7f4fe5c9e66249b52351009fa00fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menu: {fileID: 0}
+  menu: {fileID: 429893581}
 --- !u!1 &595382662
 GameObject:
   m_ObjectHideFlags: 0
@@ -28463,12 +28463,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  wheelUpdater: {fileID: 0}
-  carUIManager: {fileID: 0}
-  motor: {fileID: 0}
-  transmission: {fileID: 0}
-  inputManager: {fileID: 0}
-  raceManager: {fileID: 0}
 --- !u!65 &707284974
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32735,7 +32729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 408, y: -165}
+  m_AnchoredPosition: {x: 432.1, y: -153}
   m_SizeDelta: {x: -70, y: -80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &943885681
@@ -35886,7 +35880,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -119, y: -60.9}
+  m_AnchoredPosition: {x: -119, y: -52.4}
   m_SizeDelta: {x: -700, y: -298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1167390138
@@ -36061,7 +36055,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 346.9, y: -192.19986}
+  m_AnchoredPosition: {x: 371.00006, y: -180.19984}
   m_SizeDelta: {x: 0, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1202235217
@@ -54492,9 +54486,9 @@ MonoBehaviour:
   AudioScreen: {fileID: 1100824782}
   PlayerScreen: {fileID: 436913961}
   ControlsScreen: {fileID: 651889473}
-  audioArrow: {fileID: 1477472548}
-  playerArrow: {fileID: 442981846}
-  controlsArrow: {fileID: 298146543}
+  AudioSettings: {fileID: 1293979632}
+  PlayerSettings: {fileID: 821888719}
+  ControlsSettings: {fileID: 1400531321}
 --- !u!1 &1940654572
 GameObject:
   m_ObjectHideFlags: 0
@@ -56731,7 +56725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017728795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 10}
+  m_LocalPosition: {x: -0.41, y: 1.35, z: -0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61218,9 +61212,7 @@ GameObject:
   - component: {fileID: 772221006371042631}
   - component: {fileID: 772221006371042630}
   - component: {fileID: 772221006371042629}
-  - component: {fileID: 772221006371042628}
   - component: {fileID: 772221006371042627}
-  - component: {fileID: 772221006371042626}
   m_Layer: 0
   m_Name: supragr2020 varis
   m_TagString: Car
@@ -61361,12 +61353,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  wheelUpdater: {fileID: 772221006371042629}
-  carUIManager: {fileID: 772221006371042627}
-  motor: {fileID: 772221006371042631}
-  transmission: {fileID: 772221006371042630}
-  inputManager: {fileID: 772221006371042628}
-  raceManager: {fileID: 772221006371042626}
 --- !u!114 &772221006371042624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61395,20 +61381,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.4, y: 1, z: 5.05}
   m_Center: {x: 0, y: 1.09, z: 0}
---- !u!114 &772221006371042626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772221006371042617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c11ff95487654ba47b18003fc0492abd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transmission: {fileID: 772221006371042630}
-  motor: {fileID: 772221006371042631}
 --- !u!114 &772221006371042627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61437,23 +61409,6 @@ MonoBehaviour:
   brakeMaterial: {fileID: 2100000, guid: dc3af2e6bb4cf114ba67d282223974fd, type: 2}
   brakingColor: {r: 1, g: 0, b: 0, a: 1}
   brakeColorIntensity: 4
-  transmission: {fileID: 772221006371042630}
-  motor: {fileID: 772221006371042631}
---- !u!114 &772221006371042628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772221006371042617}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c737f3d70ae560429b8f8498c1ebde7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transmission: {fileID: 772221006371042630}
-  motor: {fileID: 772221006371042631}
-  carmovement: {fileID: 772221006371042623}
 --- !u!114 &772221006371042629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61476,7 +61431,6 @@ MonoBehaviour:
     FLWheel: {fileID: 4829315030108840424}
     RRWheel: {fileID: 4829315029893288613}
     RLWheel: {fileID: 4829315029101101656}
-  motor: {fileID: 772221006371042631}
 --- !u!114 &772221006371042630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61500,8 +61454,6 @@ MonoBehaviour:
   - 0.65
   differentialRatio: 4.2
   changeGearTime: 0.3
-  motor: {fileID: 772221006371042631}
-  carmovement: {fileID: 772221006371042623}
 --- !u!114 &772221006371042631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61585,15 +61537,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  RPM: 0
   redLineStart: 7500
   redLineEnd: 8250
   increaseGearRPM: 7400
   decreaseGearRPM: 3200
-  idleRPM: 800
-  tireDiameter: 25
-  transmission: {fileID: 772221006371042630}
-  carMovement: {fileID: 772221006371042623}
 --- !u!33 &774384546488944018
 MeshFilter:
   m_ObjectHideFlags: 0

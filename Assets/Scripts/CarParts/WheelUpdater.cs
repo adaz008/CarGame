@@ -8,7 +8,12 @@ public class WheelUpdater : MonoBehaviour
     [SerializeField] private WheelTransforms transforms;
     private float radius = 5;
     private const float baseRadius = 5f;
-    [SerializeField] Motor motor;
+    private Motor motor;
+
+    private void Start()
+    {
+        motor = gameObject.GetComponent<Motor>();
+    }
 
     public void UpdateRadius(float newValue)
     {

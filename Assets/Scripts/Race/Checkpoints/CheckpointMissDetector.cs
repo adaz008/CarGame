@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class CheckpointMissDetector : CheckpointTriggerBase
 {
+    public static event Action MissedCheckpointTrigger;
+
     protected override void Start()
     {
         base.Start();
@@ -12,10 +15,7 @@ public class CheckpointMissDetector : CheckpointTriggerBase
     {
         if (other.TryGetComponent<CarMovement>(out CarMovement player))
         {
-            GameObject trackParent = GameObject.FindGameObjectWithTag("TrackParent");
-            CountDownController countDownController = trackParent.GetComponentInChildren<CountDownController>();
-
-            countDownController.StartMissedCounter();
+            MissedCheckpointTrigger?.Invoke();
         }
     }
 }

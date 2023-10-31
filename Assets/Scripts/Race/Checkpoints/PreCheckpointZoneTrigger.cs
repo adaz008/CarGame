@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PreCheckpointZoneTrigger : CheckpointTriggerBase
 {
+    public static event Action PreCheckpointTrigger;
+
     protected override void Start()
     {
         base.Start();
@@ -12,7 +15,8 @@ public class PreCheckpointZoneTrigger : CheckpointTriggerBase
     {
         if (other.TryGetComponent<CarMovement>(out CarMovement player))
         {
-            player.MissedCheckpointReset(CheckpointMiss.Missed);
+            PreCheckpointTrigger?.Invoke();
+            //player.MissedCheckpointReset(CheckpointMiss.Missed);
             Disable();
         }
     }
