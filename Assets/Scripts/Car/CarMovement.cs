@@ -19,8 +19,12 @@ public class CarMovement : MonoBehaviour
     private bool lookBack = false;
     private bool isRaceStarting = false;
 
+    public float GasInput => gasInput;
+    public bool LookBack => lookBack;
+
     private WheelUpdater wheelUpdater;
     private CarUIManager carUIManager;
+    private CarInsideUIManager carInsideUIManager;
     private Motor motor;
     private InputManager inputManager;
     private RaceManager raceManager;
@@ -30,6 +34,7 @@ public class CarMovement : MonoBehaviour
         playerRB = gameObject.GetComponent<Rigidbody>();
         wheelUpdater = gameObject.GetComponent<WheelUpdater>();
         carUIManager = gameObject.GetComponent<CarUIManager>();
+        carInsideUIManager = gameObject.GetComponent<CarInsideUIManager>();
         motor = gameObject.GetComponent<Motor>();
 
         inputManager = new InputManager(motor, carMovement);
@@ -41,17 +46,19 @@ public class CarMovement : MonoBehaviour
         int KPH = (int)(playerRB.velocity.magnitude * 3.6f);
 
         carUIManager.UpdateUI(KPH);
+        carInsideUIManager.UpdateUI(KPH);
 
         wheelUpdater.UpdateRadius(KPH);
 
         if (!isRaceStarting)
             GetInput();
-        ApplyBreaking();
+        ApplyBraking();
         HandleMotor();
         wheelUpdater.handleSteering(steeringInput);
         wheelUpdater.UpdateWheels();
 
         carUIManager.CheckRedLine();
+        carInsideUIManager.CheckRedLine();
     }
     private void GetInput()
     {
@@ -82,7 +89,7 @@ public class CarMovement : MonoBehaviour
         wheelUpdater.handleGas(currentTorque, gasInput);
     }
 
-    private void ApplyBreaking()
+    private void ApplyBraking()
     {
         wheelUpdater.handleBrake(handBrake, brakeInput, motor.BrakePower);
         carUIManager.BrakeLampChange(handBrake, brakeInput);
@@ -90,8 +97,8 @@ public class CarMovement : MonoBehaviour
 
     public void StartRacePos(Vector3 position)
     {
-        raceManager.StartRacePos(position, playerRB, motor.isEngineRunning);
-        SetRaceStarting(true);
+        raceManager.StartRacePos(position, motor.isEngineRunning);
+        isRaceStarting = true;
     }
 
     public void SetRaceStarting(bool value)
@@ -99,9 +106,4 @@ public class CarMovement : MonoBehaviour
         isRaceStarting = value;
     }
 
-    public float GasInput => gasInput;
-    //public int IsEngineRunning => isEngineRunning;
-
-    public bool LookBack => lookBack;
-    //public void SetIsEngineRunning(int value) { isEngineRunning = value; }
 }

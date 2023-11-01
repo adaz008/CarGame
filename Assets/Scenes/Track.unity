@@ -13557,7 +13557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &228687678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35645,7 +35645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1154896922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -61001,6 +61001,7 @@ GameObject:
   - component: {fileID: 772221006371042631}
   - component: {fileID: 772221006371042629}
   - component: {fileID: 772221006371042627}
+  - component: {fileID: 772221006371042632}
   m_Layer: 0
   m_Name: supragr2020 varis
   m_TagString: Car
@@ -61183,17 +61184,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedText: {fileID: 1848773673}
   gearText: {fileID: 1757978070}
+  needleCircle: {fileID: 1445932925}
+  Limit: {r: 1, g: 0, b: 0, a: 1}
+  Default: {r: 1, g: 1, b: 1, a: 1}
   rpmNeedle: {fileID: 1083236588}
   minRPMNeedleRotation: 133
   maxRPMNeedleRotation: -53
-  needleCircle: {fileID: 1445932925}
-  insideSpeedoMeter: {fileID: 228687677}
-  speedTextInside: {fileID: 1202235217}
-  khmText: {fileID: 943885681}
-  gearTextInside: {fileID: 1653358135}
-  rpmTextInside: {fileID: 1730099819}
-  rpmText: {fileID: 424200526}
-  needleCircleInside: {fileID: 1926342786}
   brakeMaterial: {fileID: 2100000, guid: dc3af2e6bb4cf114ba67d282223974fd, type: 2}
   brakingColor: {r: 1, g: 0, b: 0, a: 1}
   brakeColorIntensity: 4
@@ -61315,6 +61311,25 @@ MonoBehaviour:
   - 0.6
   differentialRatio: 4.2
   changeGearTime: 0.3
+--- !u!114 &772221006371042632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772221006371042617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 855ca29a18d8e004c9ef9d3d10d42438, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedText: {fileID: 1202235217}
+  gearText: {fileID: 1653358135}
+  needleCircle: {fileID: 1926342786}
+  Limit: {r: 1, g: 0, b: 0, a: 1}
+  Default: {r: 0, g: 0.83137256, b: 1, a: 1}
+  insideSpeedoMeter: {fileID: 1154896921}
+  rpmText: {fileID: 1730099819}
 --- !u!33 &774384546488944018
 MeshFilter:
   m_ObjectHideFlags: 0

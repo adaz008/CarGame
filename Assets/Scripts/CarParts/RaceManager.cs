@@ -6,13 +6,13 @@ public class RaceManager
 {
     //Amikor kihagyja a checkpointot és vissza kell tenni
     private Rigidbody _player;
-    Vector3 resetPos = Vector3.zero;
-    Quaternion resetRot = Quaternion.identity;
-    Vector3 resetVelocity = Vector3.zero;
+    private Vector3 resetPos = Vector3.zero;
+    private Quaternion resetRot = Quaternion.identity;
+    private Vector3 resetVelocity = Vector3.zero;
 
-    GearState resetGearState = GearState.Neutral;
-    int resetCurrentGear = 0;
-    float resetRPM = 0f;
+    private GearState resetGearState = GearState.Neutral;
+    private int resetCurrentGear = 0;
+    private float resetRPM = 0f;
 
     //private Transmission _transmission;
     private Motor _motor;
@@ -26,27 +26,26 @@ public class RaceManager
         CountDownController.MissedCheckpointReset += MissedCheckpointReset;
     }
 
-    public void StartRacePos(Vector3 position, Rigidbody playerRB, int isEngineRunning)
+    public void StartRacePos(Vector3 position, int isEngineRunning)
     {
         if (isEngineRunning != 0)
         {
-            Collider carCollider = playerRB.GetComponentInChildren<Collider>();
+            Collider carCollider = _player.GetComponentInChildren<Collider>();
             if (carCollider)
             {
-                Vector3 adjustedPosition = position - carCollider.bounds.extents.x * playerRB.transform.forward;
-                playerRB.MovePosition(adjustedPosition);
+                Vector3 adjustedPosition = position - carCollider.bounds.extents.x * _player.transform.forward;
+                _player.MovePosition(adjustedPosition);
             }
 
-            playerRB.transform.rotation = Quaternion.Euler(0, 270, 0);
+            _player.transform.rotation = Quaternion.Euler(0, 270, 0);
 
             _motor.gearState = GearState.Running;
             _motor.setRPMToIdle();
-            playerRB.velocity = Vector3.zero;
+            _player.velocity = Vector3.zero;
         }
     }
 
-
-    public void MissedCheckpointMissed()
+    private void MissedCheckpointMissed()
     {
         resetPos = _player.position;
         resetRot = _player.rotation;
@@ -56,7 +55,7 @@ public class RaceManager
         resetRPM = _motor.RPM;
     }
 
-    public void MissedCheckpointReset()
+    private void MissedCheckpointReset()
     {
         _player.position = resetPos;
         _player.rotation = resetRot;

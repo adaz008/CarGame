@@ -5,12 +5,10 @@ using UnityEngine;
 public class InputManager
 {
     private Motor _motor;
-    private CarMovement _carmovement;
 
     public InputManager(Motor motor, CarMovement carmovement)
     {
         _motor = motor;
-        _carmovement = carmovement;
     }
 
     public void getInput(ref float gasInput, ref float steeringInput, ref Rigidbody playerRB, ref bool handBrake, ref bool lookBack)
