@@ -87,7 +87,7 @@ public class EngineAudio : MonoBehaviour
         }
     }
 
-    public void MuteAll()
+    private void MuteAll()
     {
         Audios.LowOff.volume = 0;
         Audios.LowOn.volume = 0;

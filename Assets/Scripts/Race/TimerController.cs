@@ -21,7 +21,6 @@ public class TimerController : MonoBehaviour
     private float allTime = 0f;
     private float bestLap = 0f;
     private bool isStarted = false;
-    private bool isEnded = false;
 
     private List<float> lapTimes = new List<float>();
     private RaceMenu raceMenu;
@@ -113,6 +112,5 @@ public class TimerController : MonoBehaviour
         Restart();
         raceMenu?.FinishRace(lapTimes, bestLap, allTime);
         isStarted = false;
-        isEnded = true;
     }
 }

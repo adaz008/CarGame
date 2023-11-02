@@ -16,26 +16,21 @@ namespace Assets.Scripts.Menu.MenuSettings
         [SerializeField] private TextMeshProUGUI RearViewMirrorOnOff;
 
         private int cameraTypeIndex = 0;
-        [SerializeField] private Button[] changeCameraButton;
+        [SerializeField] private ChangeButtons changeCameraButtons;
 
         private int transmissionTypeIndex = 0;
-        [SerializeField] private Button[] changeTransmissionButton;
+        [SerializeField] private ChangeButtons changeTransmissionButtons;
 
         [Header("Toggles")]
-        [SerializeField] private Toggle[] toggles;
+        [SerializeField] private Toggles toggles;
 
         private string[] CameraTypes = { "Close", "Far", "Hood", "Bumper", "Inside"};
         private string[] TransmissionTypes = { "Auto", "Manual" };
-        private string[] ControlsTypes = { "Keyboard", "Controller" };
 
-        public void Start()
+
+        private void Start()
         {
             InitializePlayerSettings();
-        }
-
-        private void OnEnable()
-        {
-            InitializeCameraSettings();
         }
 
         private void InitializePlayerSettings()
@@ -56,6 +51,8 @@ namespace Assets.Scripts.Menu.MenuSettings
                     break;
                 }
             }
+            changeTransmissionButtons.Left.onClick.AddListener(() => { changeTransmission(); });
+            changeTransmissionButtons.Right.onClick.AddListener(() => { changeTransmission(); });
         }
 
         private void InitializeCameraSettings()
@@ -70,25 +67,28 @@ namespace Assets.Scripts.Menu.MenuSettings
                     break;
                 }
             }
+
+            changeCameraButtons.Left.onClick.AddListener(() => { changeCamera(-1); });
+            changeCameraButtons.Right.onClick.AddListener(() => {changeCamera(1);});
         }
 
         private void InitializeToggleSettings()
         {
-            foreach (Toggle toggle in toggles)
-            {
-                toggle.onValueChanged.AddListener((value) => { ChangeToggleValue(toggle); });
-            }
+            toggles.SpeedoMeter.onValueChanged.AddListener((value) => { ChangeToggleValue(toggles.SpeedoMeter); });
+            toggles.CameraSwitch.onValueChanged.AddListener((value) => { ChangeToggleValue(toggles.CameraSwitch); });
+            toggles.Minimap.onValueChanged.AddListener((value) => { ChangeToggleValue(toggles.Minimap); });
+            toggles.RearView.onValueChanged.AddListener((value) => { ChangeToggleValue(toggles.RearView); });
 
             //Trick toggle onValueChanged
-            toggles[0].isOn = !UserSettings.Instance.Gauges;
-            toggles[1].isOn = !UserSettings.Instance.ChangeCameraReverse;
-            toggles[2].isOn = !UserSettings.Instance.Minimap;
-            toggles[3].isOn = !UserSettings.Instance.RearViewMirror;
+            toggles.SpeedoMeter.isOn = !UserSettings.Instance.Gauges;
+            toggles.CameraSwitch.isOn = !UserSettings.Instance.ChangeCameraReverse;
+            toggles.Minimap.isOn = !UserSettings.Instance.Minimap;
+            toggles.RearView.isOn = !UserSettings.Instance.RearViewMirror;
             //Real toggle onValueChanged
-            toggles[0].isOn = UserSettings.Instance.Gauges;
-            toggles[1].isOn = UserSettings.Instance.ChangeCameraReverse;
-            toggles[2].isOn = UserSettings.Instance.Minimap;
-            toggles[3].isOn = UserSettings.Instance.RearViewMirror;
+            toggles.SpeedoMeter.isOn = UserSettings.Instance.Gauges;
+            toggles.CameraSwitch.isOn = UserSettings.Instance.ChangeCameraReverse;
+            toggles.Minimap.isOn = UserSettings.Instance.Minimap;
+            toggles.RearView.isOn = UserSettings.Instance.RearViewMirror;
         }
 
         public void ChangeToggleValue(Toggle toggle)
@@ -106,10 +106,10 @@ namespace Assets.Scripts.Menu.MenuSettings
         public void SavePlayerSettings()
         {
             //Gauges - ChangeCameraReverse - Minimap
-            UserSettings.Instance.Gauges = toggles[0].isOn;
-            UserSettings.Instance.ChangeCameraReverse = toggles[1].isOn;
-            UserSettings.Instance.Minimap = toggles[2].isOn;
-            UserSettings.Instance.RearViewMirror = toggles[3].isOn;
+            UserSettings.Instance.Gauges = toggles.SpeedoMeter.isOn;
+            UserSettings.Instance.ChangeCameraReverse = toggles.CameraSwitch.isOn;
+            UserSettings.Instance.Minimap = toggles.Minimap.isOn;
+            UserSettings.Instance.RearViewMirror = toggles.RearView.isOn;
 
             UserSettings.Instance.Camera = CameraType.text;
             UserSettings.Instance.Transmission = TransmissionType.text;
@@ -134,5 +134,21 @@ namespace Assets.Scripts.Menu.MenuSettings
             cameraTypeIndex = (cameraTypeIndex + direction + CameraTypes.Length) % CameraTypes.Length;
             CameraType.text = CameraTypes[cameraTypeIndex];
         }
+    }
+
+    [System.Serializable]
+    public class ChangeButtons
+    {
+        public Button Left;
+        public Button Right;
+    }
+
+    [System.Serializable]
+    public class Toggles
+    {
+        public Toggle SpeedoMeter;
+        public Toggle CameraSwitch;
+        public Toggle Minimap;
+        public Toggle RearView;
     }
 }

@@ -17484,17 +17484,17 @@ MonoBehaviour:
   CameraSwitchOnOff: {fileID: 1724448297}
   MinimapOnOff: {fileID: 744177184}
   RearViewMirrorOnOff: {fileID: 362509563}
-  changeCameraButton:
-  - {fileID: 670000703}
-  - {fileID: 521992386}
-  changeTransmissionButton:
-  - {fileID: 668569107}
-  - {fileID: 1569336457}
+  changeCameraButtons:
+    Left: {fileID: 670000703}
+    Right: {fileID: 521992386}
+  changeTransmissionButtons:
+    Left: {fileID: 668569107}
+    Right: {fileID: 1569336457}
   toggles:
-  - {fileID: 609439123}
-  - {fileID: 55389935}
-  - {fileID: 692399872}
-  - {fileID: 1986935573}
+    SpeedoMeter: {fileID: 609439123}
+    CameraSwitch: {fileID: 55389935}
+    Minimap: {fileID: 692399872}
+    RearView: {fileID: 1986935573}
 --- !u!114 &436913965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25999,7 +25999,6 @@ GameObject:
   - component: {fileID: 609439123}
   - component: {fileID: 609439122}
   - component: {fileID: 609439121}
-  - component: {fileID: 609439124}
   m_Layer: 5
   m_Name: SpeedoMeter
   m_TagString: Untagged
@@ -26194,20 +26193,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 0
---- !u!114 &609439124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609439119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcdac1830bab0804ea353527b7b6c218, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftArrow: {fileID: 844789023}
-  rightArrow: {fileID: 1580614933}
 --- !u!1 &622593300
 GameObject:
   m_ObjectHideFlags: 0
@@ -34631,10 +34616,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sliders:
-  - {fileID: 1284190159}
-  - {fileID: 2133912686}
-  - {fileID: 1568945551}
-  - {fileID: 1673311180}
+    CarSlider: {fileID: 1284190159}
+    UIEffectSlider: {fileID: 2133912686}
+    MenuMusicSlider: {fileID: 1568945551}
+    GameMusicSlider: {fileID: 1673311180}
 --- !u!1 &1112964704
 GameObject:
   m_ObjectHideFlags: 0
@@ -42487,18 +42472,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SettingsUIManager, Assembly-CSharp
-        m_MethodName: OpenSettingsMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 436913964}
         m_TargetAssemblyTypeName: Assets.Scripts.Menu.MenuSettings.PlayerMenu, Assembly-CSharp

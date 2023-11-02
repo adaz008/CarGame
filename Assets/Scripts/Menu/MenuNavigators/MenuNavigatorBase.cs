@@ -108,6 +108,8 @@ public class MenuNavigatorBase : MonoBehaviour
     protected virtual void OnDeactivate()
     {
         TextMeshProUGUI[] texts = items[selectedItemIdx].GetComponentsInChildren<TextMeshProUGUI>();
+        Debug.Log("SelectedItem: " + items[selectedItemIdx]);
+        Debug.Log("Length: " + texts.Length);
         texts[2].gameObject.SetActive(false);
     }
 }

@@ -2,70 +2,69 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.Menu.MenuSettings
+
+public class AudioMenu : MonoBehaviour
 {
-    public class AudioMenu : MonoBehaviour
+    //VolumeSettings
+    [Header("Audio sliders")]
+    public Sliders sliders;
+
+    private void Start()
     {
-        //VolumeSettings
-        [Header("Audio sliders")]
-        public Slider[] sliders;
-
-        public void Start()
-        {
-            InitializeSliders();
-        }
-
-        private void InitializeSliders()
-        {
-            //CarVolume-SoundEffectVolume-MenuMusicVolume-GameMusicVolume
-            foreach (Slider slider in sliders)
-            {
-                if (slider.name.Contains("Car"))
-                    slider.value = UserSettings.Instance.CarVolume;
-                if (slider.name.Contains("Sound"))
-                    slider.value = UserSettings.Instance.SoundEffectVolume;
-                if (slider.name.Contains("Menu"))
-                    slider.value = UserSettings.Instance.MenuMusicVolume;
-                if (slider.name.Contains("Game"))
-                    slider.value = UserSettings.Instance.GameMusicVolume;
-            }
-            foreach (Slider slider in sliders)
-            {
-                slider.onValueChanged.AddListener((value) => { HandleSliderValueChange(value, slider); });
-                slider.onValueChanged.Invoke(slider.value);
-            }
-        }
-
-        public void SaveAudioSettings()
-        {
-            foreach (Slider slider in sliders)
-            {
-                if (slider.name == "CarSlider")
-                    UserSettings.Instance.CarVolume = slider.value;
-                if (slider.name == "SoundEffectSlider")
-                    UserSettings.Instance.SoundEffectVolume = slider.value;
-                if (slider.name == "MenuMusicSlider")
-                    UserSettings.Instance.MenuMusicVolume = slider.value;
-                if (slider.name == "GameMusicSlider")
-                    UserSettings.Instance.GameMusicVolume = slider.value;
-            }
-        }
-
-        private void HandleSliderValueChange(float value, Slider slider)
-        {
-            slider.GetComponentInChildren<TextMeshProUGUI>().text = ((int)(value * 100)).ToString();
-            SaveAudioSettings();
-        }
-
-        public void IncreaseVolume(Slider slider)
-        {
-            if (slider.value != 1)
-                slider.value += 0.01f;
-        }
-        public void DecreaseVolume(Slider slider)
-        {
-            if (slider.value != 0)
-                slider.value -= 0.01f;
-        }
+        InitializeSliders();
     }
+
+    private void InitializeSliders()
+    {
+        sliders.CarSlider.value = UserSettings.Instance.CarVolume;
+        sliders.UIEffectSlider.value = UserSettings.Instance.SoundEffectVolume;
+        sliders.MenuMusicSlider.value = UserSettings.Instance.MenuMusicVolume;
+        sliders.GameMusicSlider.value = UserSettings.Instance.GameMusicVolume;
+
+        sliders.CarSlider.onValueChanged.AddListener((value) => { HandleSliderValueChange(value, sliders.CarSlider); });
+        sliders.CarSlider.onValueChanged.Invoke(sliders.CarSlider.value);
+
+        sliders.UIEffectSlider.onValueChanged.AddListener((value) => { HandleSliderValueChange(value, sliders.UIEffectSlider); });
+        sliders.UIEffectSlider.onValueChanged.Invoke(sliders.UIEffectSlider.value);
+
+        sliders.MenuMusicSlider.onValueChanged.AddListener((value) => { HandleSliderValueChange(value, sliders.MenuMusicSlider); });
+        sliders.MenuMusicSlider.onValueChanged.Invoke(sliders.MenuMusicSlider.value);
+
+        sliders.GameMusicSlider.onValueChanged.AddListener((value) => { HandleSliderValueChange(value, sliders.GameMusicSlider); });
+        sliders.GameMusicSlider.onValueChanged.Invoke(sliders.GameMusicSlider.value);
+    }
+
+    public void SaveAudioSettings()
+    {
+        UserSettings.Instance.CarVolume = sliders.CarSlider.value;
+        UserSettings.Instance.SoundEffectVolume = sliders.UIEffectSlider.value;
+        UserSettings.Instance.MenuMusicVolume = sliders.MenuMusicSlider.value;
+        UserSettings.Instance.GameMusicVolume = sliders.GameMusicSlider.value;
+    }
+
+    private void HandleSliderValueChange(float value, Slider slider)
+    {
+        slider.GetComponentInChildren<TextMeshProUGUI>().text = ((int)(value * 100)).ToString();
+        SaveAudioSettings();
+    }
+
+    public void IncreaseVolume(Slider slider)
+    {
+        if (slider.value != 1)
+            slider.value += 0.01f;
+    }
+    public void DecreaseVolume(Slider slider)
+    {
+        if (slider.value != 0)
+            slider.value -= 0.01f;
+    }
+}
+
+[System.Serializable]
+public class Sliders
+{
+    public Slider CarSlider;
+    public Slider UIEffectSlider;
+    public Slider MenuMusicSlider;
+    public Slider GameMusicSlider;
 }

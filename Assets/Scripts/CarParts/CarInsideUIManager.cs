@@ -24,7 +24,6 @@ namespace Assets.Scripts.CarParts
 
         private void ShowInside(bool value)
         {
-            Debug.Log(value);
             insideSpeedoMeter.gameObject.SetActive(value);
 
         }
