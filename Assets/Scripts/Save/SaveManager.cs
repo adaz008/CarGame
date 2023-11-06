@@ -5,6 +5,6 @@ public class SaveManager : MonoBehaviour
 {
     public void SaveUserSettings()
     {
-        SaveSystem.SaveData(new UserSettingsData(UserSettings.Instance), "userSettings.json");
-    }
+		SaveSystem.SaveDataToJson(new UserSettingsData(UserSettings.Instance), "userSettings.json");
+	}
 }

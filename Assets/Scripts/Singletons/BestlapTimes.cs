@@ -18,7 +18,7 @@ public class BestlapTimes : MonoBehaviour
             Destroy(gameObject);
         }
 
-        BestLapTimeData data = SaveSystem.LoadData<BestLapTimeData>("trackTimes.json");
+        BestLapTimeData data = SaveSystem.LoadDataToBinary<BestLapTimeData>("trackTimes.dat");
 
         if (data != null)
         {

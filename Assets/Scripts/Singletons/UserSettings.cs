@@ -15,10 +15,10 @@ public class UserSettings : MonoBehaviour
         else
             Destroy(gameObject);
 
-        UserSettingsData data = SaveSystem.LoadData<UserSettingsData>("userSettings.json");
+		UserSettingsData data = SaveSystem.LoadDataFromJson<UserSettingsData>("userSettings.json");
 
 
-        CarVolume = data?.CarVolume ?? 0.15f;
+		CarVolume = data?.CarVolume ?? 0.15f;
         SoundEffectVolume = data?.SoundEffectVolume ?? 0.75f;
         MenuMusicVolume = data?.MenuMusicVolume ?? 0.1f;
         GameMusicVolume = data?.GameMusicVolume ?? 0.2f;

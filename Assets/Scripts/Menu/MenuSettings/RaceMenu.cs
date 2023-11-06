@@ -112,7 +112,7 @@ namespace Assets.Scripts.Menu.MenuSettings
                 }
             }
 
-            SaveSystem.SaveData(new BestLapTimeData(BestlapTimes.Instance), "trackTimes.json");
+            SaveSystem.SaveDataToBinary(new BestLapTimeData(BestlapTimes.Instance), "trackTimes.dat");
 
             isRace = false;
             startRace.gameObject.SetActive(true);
