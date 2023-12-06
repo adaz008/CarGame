@@ -6,7 +6,7 @@ public class InputManager
 {
     private Motor _motor;
 
-    public InputManager(Motor motor, CarMovement carmovement)
+    public InputManager(Motor motor)
     {
         _motor = motor;
     }
@@ -68,51 +68,5 @@ public class InputManager
         {
             UserSettings.Instance.nextCamera();
         }
-
-
-        if ((gasInput == 0 &&
-            !float.IsNaN(playerRB.velocity.x) &&
-            !float.IsNaN(playerRB.velocity.y) &&
-            !float.IsNaN(playerRB.velocity.z) &&
-            playerRB.velocity.magnitude != 0f)
-            ||
-            (UserSettings.Instance.Transmission == "Manual") &&
-            _motor.RPM > _motor.RedLineEnd)
-        {
-            float speed = playerRB.velocity.magnitude * 3.6f;
-            float newSpeed = playerRB.velocity.magnitude * 3.6f - 0.295f;
-
-            if (speed > 120f)
-                newSpeed = playerRB.velocity.magnitude * 3.6f - 0.32f;
-            else if (speed > 180f)
-                newSpeed = playerRB.velocity.magnitude * 3.6f - 0.35f;
-
-            float ratio = Mathf.Pow(newSpeed, 2) / Mathf.Pow(speed, 2);
-
-            playerRB.velocity *= ratio < 1f ? ratio : 1f;
-        }
-
-
-
-        //Ha benyomjuk a kuplungot akkor 0 egyébként az idõ függvényében váltózik 0 és 1 között
-        //Ahogyan csusztatnánk
-        if (gearState != GearState.Changing)
-        {
-            if (gearState == GearState.Neutral)
-            {
-                _motor.clutch = 0;
-                if (gasInput > 0)
-                    gearState = GearState.Running;
-                else if (gasInput < 0)
-                    gearState = GearState.Reverse;
-            }
-            else
-                //clutch = Input.GetKey(KeyCode.AltGr) ? 0 : Mathf.Lerp(clutch, 1, Time.deltaTime);
-                _motor.clutch = Mathf.Lerp(_motor.clutch, 1, Time.deltaTime);
-        }
-        else
-            _motor.clutch = 0;
-
-
     }
 }

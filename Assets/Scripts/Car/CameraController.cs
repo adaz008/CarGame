@@ -39,11 +39,11 @@ public class CameraController : MonoBehaviour
         bool isCameraChanged = UserSettings.Instance.Camera != currentCamera;
 
         if (UserSettings.Instance.Camera == "Hood")
-            SetCameraPosition(hood, isCameraChanged);
+            SetCameraPosition(hood, isCameraChanged, false);
         else if (UserSettings.Instance.Camera == "Bumper")
-            SetCameraPosition(bumper, isCameraChanged);
+            SetCameraPosition(bumper, isCameraChanged, false);
         else if (UserSettings.Instance.Camera == "Inside")
-            SetCameraPosition(inside, isCameraChanged);
+            SetCameraPosition(inside, isCameraChanged, true);
 
         currentCamera = UserSettings.Instance.Camera;
 
@@ -56,9 +56,6 @@ public class CameraController : MonoBehaviour
                 SetCameraPositionFarClose(playerForward, distanceOffSet);
             }else
             {
-                //Vector3 forward = (playerForward.x > 0 && playerForward.z > 0) ? -playerForward : playerForward;
-                //Debug.Log("PlayerForward: " + playerForward);
-                //Debug.Log("Forward: " + forward);
                 SetCameraPositionFarClose(-playerForward, distanceOffSet);
             }
         }
@@ -66,7 +63,7 @@ public class CameraController : MonoBehaviour
         HandleCameraFieldOfView();
     }
 
-    private void SetCameraPosition(Vector3 position, bool isChanged)
+    private void SetCameraPosition(Vector3 position, bool isChanged, bool isInside)
     {
         //Camera rotation helyreallitas
         if (isChanged)
@@ -74,6 +71,10 @@ public class CameraController : MonoBehaviour
             Vector3 targetPosition = player.position - player.forward * Distance_Offset_Close;
             transform.position = targetPosition;
             transform.LookAt(player);
+            if (isInside)
+            {
+                transform.eulerAngles = new Vector3(0f, -76.19f, 0f);
+            }
         }
 
         transform.position = player.TransformPoint(position);

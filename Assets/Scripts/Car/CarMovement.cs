@@ -1,3 +1,4 @@
+using System;
 using Assets.Scripts.CarParts;
 using UnityEngine;
 
@@ -13,9 +14,10 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private AnimationCurve hpToRPMCurve;
 
     private float currentTorque;
-    //private int isEngineRunning;
+	private float downforce;
+	private float DownForceValue = 10f;
 
-    private bool handBrake = false;
+	private bool handBrake = false;
     private bool lookBack = false;
     private bool isRaceStarting = false;
 
@@ -30,14 +32,13 @@ public class CarMovement : MonoBehaviour
     private RaceManager raceManager;
     private void Start()
     {
-        CarMovement carMovement = GetComponent<CarMovement>();
         playerRB = gameObject.GetComponent<Rigidbody>();
         wheelUpdater = gameObject.GetComponent<WheelUpdater>();
         carUIManager = gameObject.GetComponent<CarUIManager>();
         carInsideUIManager = gameObject.GetComponent<CarInsideUIManager>();
         motor = gameObject.GetComponent<Motor>();
 
-        inputManager = new InputManager(motor, carMovement);
+        inputManager = new InputManager(motor);
         raceManager = new RaceManager(motor, playerRB);
     }
 
@@ -45,22 +46,38 @@ public class CarMovement : MonoBehaviour
     {
         int KPH = (int)(playerRB.velocity.magnitude * 3.6f);
 
-        carUIManager.UpdateUI(KPH);
-        carInsideUIManager.UpdateUI(KPH);
+        AddDownForce(KPH);
+
+        UpdateUI(KPH);
 
         wheelUpdater.UpdateRadius(KPH);
+        wheelUpdater.handleFriction(handBrake);
 
         if (!isRaceStarting)
             GetInput();
+        EngineBrake();
         ApplyBraking();
         HandleMotor();
+
         wheelUpdater.handleSteering(steeringInput);
         wheelUpdater.UpdateWheels();
 
-        carUIManager.CheckRedLine();
-        carInsideUIManager.CheckRedLine();
+        CheckRedline();
     }
-    private void GetInput()
+
+    private void UpdateUI(int KPH)
+    {
+		carUIManager.UpdateUI(KPH);
+		carInsideUIManager.UpdateUI(KPH);
+	}
+
+	private void CheckRedline()
+	{
+		carUIManager.CheckRedLine();
+		carInsideUIManager.CheckRedLine();
+	}
+
+	private void GetInput()
     {
         inputManager.getInput(ref gasInput, ref steeringInput, ref playerRB, ref handBrake, ref lookBack);
 
@@ -80,6 +97,11 @@ public class CarMovement : MonoBehaviour
             brakeInput = 0;
     }
 
+    private void EngineBrake()
+    {
+		motor.EngineBrake(ref playerRB, gasInput);
+	}
+
     private void HandleMotor()
     {
         currentTorque = motor.CalculateTorque(playerRB, gasInput);
@@ -95,7 +117,15 @@ public class CarMovement : MonoBehaviour
         carUIManager.BrakeLampChange(handBrake, brakeInput);
     }
 
-    public void StartRacePos(Vector3 position)
+	private void AddDownForce(int KPH)
+	{
+		downforce = Mathf.Abs(DownForceValue * playerRB.velocity.magnitude);
+		downforce = KPH > 60 ? downforce : 0;
+		playerRB.AddForce(-transform.up * downforce);
+
+	}
+
+	public void StartRacePos(Vector3 position)
     {
         raceManager.StartRacePos(position, motor.isEngineRunning);
         isRaceStarting = true;

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using UnityEngine;
 
 public class WheelUpdater : MonoBehaviour
@@ -8,8 +7,17 @@ public class WheelUpdater : MonoBehaviour
     [SerializeField] private WheelTransforms transforms;
     private float radius = 5f;
     private const float baseRadius = 5f;
+    private float ForwardStifness;
+    private float SidewaysStifness;
 
-    public void UpdateRadius(float newValue)
+
+	private void Awake()
+	{
+        ForwardStifness = colliders.RRWheel.forwardFriction.stiffness;
+        SidewaysStifness = colliders.RRWheel.sidewaysFriction.stiffness;
+	}
+
+	public void UpdateRadius(float newValue)
     {
         radius = baseRadius + newValue / 20;
     }
@@ -24,9 +32,9 @@ public class WheelUpdater : MonoBehaviour
     {
         if (handBrake)
         {
-            colliders.RRWheel.brakeTorque = brakePower;
-            colliders.RLWheel.brakeTorque = brakePower;
-        }
+            colliders.RRWheel.brakeTorque = Mathf.Infinity;
+            colliders.RLWheel.brakeTorque = Mathf.Infinity;
+		}
         else
         {
             colliders.FRWheel.brakeTorque = brakeInput * brakePower * 0.7f;
@@ -37,6 +45,27 @@ public class WheelUpdater : MonoBehaviour
         }
     }
 
+	public void handleFriction(bool handBrake)
+	{
+		ChangeFriction(colliders.RRWheel, handBrake);
+		ChangeFriction(colliders.RLWheel, handBrake);
+	}
+
+	private void ChangeFriction(WheelCollider collider, bool handBrake)
+    {
+		WheelFrictionCurve forwardFriction = collider.forwardFriction;
+        forwardFriction.stiffness = (handBrake) ?
+                        Mathf.Lerp(forwardFriction.stiffness, 0.7f, Time.deltaTime * 2f) :
+                        Mathf.Lerp(forwardFriction.stiffness, ForwardStifness, Time.deltaTime * 2f);
+		collider.forwardFriction = forwardFriction;
+
+		WheelFrictionCurve sidewaysFriction = collider.sidewaysFriction;
+		sidewaysFriction.stiffness = (handBrake) ?
+						Mathf.Lerp(sidewaysFriction.stiffness, 0.7f, Time.deltaTime * 2f) :
+						Mathf.Lerp(sidewaysFriction.stiffness, SidewaysStifness, Time.deltaTime * 2f);
+		collider.sidewaysFriction = sidewaysFriction;
+	}
+
     public void handleSteering(float steeringInput)
     {
         float currentAngle = colliders.FLWheel.steerAngle;
@@ -44,16 +73,11 @@ public class WheelUpdater : MonoBehaviour
         float newAnglePos = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * steeringInput;
         float newAngleMinus = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius - (1.5f / 2))) * steeringInput;
 
-        if (steeringInput > 0)
+        if (steeringInput != 0)
         {
-            //rear tracks size is set to 1.5f       wheel base has been set to 2.55f
-            colliders.FLWheel.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * steeringInput;
-            colliders.FRWheel.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius - (1.5f / 2))) * steeringInput;
-        }
-        else if (steeringInput < 0)
-        {
-            colliders.FLWheel.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * steeringInput;
-            colliders.FRWheel.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius - (1.5f / 2))) * steeringInput;
+            float steeringAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * steeringInput;
+            colliders.FLWheel.steerAngle = steeringAngle;
+            colliders.FRWheel.steerAngle = steeringAngle;
         }
         else
         {
@@ -97,4 +121,3 @@ public class WheelTransforms
     public Transform RRWheel;
     public Transform RLWheel;
 }
-

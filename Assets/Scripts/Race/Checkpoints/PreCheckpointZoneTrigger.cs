@@ -16,7 +16,6 @@ public class PreCheckpointZoneTrigger : CheckpointTriggerBase
         if (other.TryGetComponent<CarMovement>(out CarMovement player))
         {
             PreCheckpointTrigger?.Invoke();
-            //player.MissedCheckpointReset(CheckpointMiss.Missed);
             Disable();
         }
     }

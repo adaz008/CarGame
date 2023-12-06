@@ -16,7 +16,7 @@ public static class SaveSystem
     }
 
 
-    public static T LoadDataToBinary<T>(string fileName)
+    public static T LoadDataFromBinary<T>(string fileName)
     {
         string path = Application.persistentDataPath + "/" + fileName;
         if (File.Exists(path))

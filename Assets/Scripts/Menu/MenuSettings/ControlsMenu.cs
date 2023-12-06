@@ -17,4 +17,9 @@ public class ControlsMenu : MonoBehaviour
             InputFields[i].text = UserSettings.Instance.KeyCodesKeyboard[i].ToString();
     }
 
+    public void setKeyValue(int selectedIndex, KeyCode value)
+    {
+		UserSettings.Instance.KeyCodesKeyboard[selectedIndex] = value;
+	}
+
 }

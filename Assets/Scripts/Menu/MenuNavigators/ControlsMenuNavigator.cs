@@ -8,7 +8,14 @@ public class ControlsMenuNavigator : MenuNavigatorBase
     public static event Action OnControlsEditing;
     public static bool isEditing = false;
 
-    protected override void Update()
+    private ControlsMenu controlsMenu;
+
+	private void Awake()
+	{
+		controlsMenu = gameObject.GetComponent<ControlsMenu>();
+	}
+
+	protected override void Update()
     {
         if (!isEditing)
             base.Update();
@@ -24,6 +31,7 @@ public class ControlsMenuNavigator : MenuNavigatorBase
 
     private IEnumerator OnSelect(TextMeshProUGUI text)
     {
+        string valueBeforeChange = text.text;
         //Legyen egy beolvasás minimum az enter előtt
         bool firstTime = true;
         text.fontStyle = FontStyles.Underline;
@@ -35,12 +43,12 @@ public class ControlsMenuNavigator : MenuNavigatorBase
             {
                 Debug.Log("IsEditing false");
                 isEditing = false;
-                text.text = UserSettings.Instance.KeyCodesKeyboard[selectedItemIdx].ToString();
+                text.text = valueBeforeChange;
             }
             else if (Input.GetKeyDown(KeyCode.Return) && !firstTime)
             {
                 isEditing = false;
-                UserSettings.Instance.KeyCodesKeyboard[selectedItemIdx] = currentKeyCode;
+                controlsMenu.setKeyValue(selectedItemIdx, currentKeyCode);
             }
             else if (Input.anyKeyDown)
             {
@@ -66,6 +74,6 @@ public class ControlsMenuNavigator : MenuNavigatorBase
         text.fontStyle = FontStyles.Bold;
         text.color = hoverColor;
 
-        yield return null;
+        yield break;
     }
 }

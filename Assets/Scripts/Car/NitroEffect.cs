@@ -59,7 +59,7 @@ public class NitroEffect : MonoBehaviour
         nitroSmokeRight.Play();
 
         playerRB.AddForce(transform.forward * 10000);
-        playerRB.velocity *= 1.005f;
+        playerRB.velocity *= 1.01f;
         nitroFlag = true;
     }
 
