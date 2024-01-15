@@ -98,15 +98,15 @@ namespace Assets.Scripts.Menu.MenuSettings
                 string bestLapKey = trackPrefabName + "Bestlap";
                 string overallKey = trackPrefabName + "Overall";
 
-                //Ha nem létezik még bejegyzés vagy jobb idő született, akkor kell updatelni
-                if (!bestTimes.trackBestLapTimes.ContainsKey(bestLapKey) ||
-                    (bestTimes.trackBestLapTimes[bestLapKey] < bestlap))
+				//Ha nem létezik még bejegyzés vagy jobb idő született, akkor kell updatelni
+				if (!bestTimes.trackBestLapTimes.ContainsKey(bestLapKey) ||
+                    ( bestlap < bestTimes.trackBestLapTimes[bestLapKey]))
                 {
                     bestTimes.trackBestLapTimes[bestLapKey] = bestlap;
                 }
 
                 if (!bestTimes.trackBestLapTimes.ContainsKey(overallKey) ||
-                (bestTimes.trackBestLapTimes[overallKey] < overallTime))
+                (overallTime < bestTimes.trackBestLapTimes[overallKey]))
                 {
                     bestTimes.trackBestLapTimes[overallKey] = overallTime;
                 }
