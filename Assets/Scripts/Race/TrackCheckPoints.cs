@@ -61,7 +61,7 @@ public class TrackCheckPoints : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(lapText.gameObject);
+        //Destroy(lapText.gameObject);
     }
 
 

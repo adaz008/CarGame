@@ -19,7 +19,8 @@ public class EndRaceMenu : MonoBehaviour
 
     public void ShowEndScreen(List<float> laptimes, float currentBestlap, float currentOverallTime, string raceTrackName)
     {
-        this.gameObject.SetActive(true);
+
+		this.gameObject.SetActive(true);
         Time.timeScale = 0f;
         pauseMenu.SetIsEnabled(false);
         pauseMenu.SetGameIsPaused(true);
@@ -30,9 +31,6 @@ public class EndRaceMenu : MonoBehaviour
 
         float bestLap = bestTimes.trackBestLapTimes[bestLapKey];
         float overallTime = bestTimes.trackBestLapTimes[overallKey];
-
-        Debug.Log("BestLap:" + bestLap);
-        Debug.Log("Overalltime:" + overallTime);
 
         currentBestlapTextmesh.text = convertFloatToString(currentBestlap);
         currentOverallTextmesh.text = convertFloatToString(currentOverallTime);

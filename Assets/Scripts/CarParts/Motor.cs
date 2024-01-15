@@ -77,12 +77,10 @@ namespace Assets.Scripts.CarParts
 					RPM = (playerRB.velocity.magnitude * MAGNITUDE_TO_KMH * gearRatios[currentGear] * INCHES_PER_KM_TO_RPM * axleRatio) / TIRE_DIAMETER;
 					RPM = RPM > redLineEnd ? (redLineEnd + Random.Range(-100, 100)) : RPM;
 					//Nyomaték newtonméterben
-					Debug.Log("HPCurveValue: " + hpToRPMCurve.Evaluate(RPM / redLineEnd));
 
 					//torque = hpToRPMCurve.Evaluate(RPM / redLineEnd) * motorPower * RPM / TORQUE_CONVERSION_FACTOR * clutch;
 					torque = (hpToRPMCurve.Evaluate(RPM / redLineEnd) * motorPower / RPM) * gearRatios[currentGear] * axleRatio * TORQUE_CONVERSION_FACTOR * clutch;
 
-					Debug.Log("Torque: " + torque);
 					if (RPM > redLineEnd)
 						torque = 0f;
 				}
